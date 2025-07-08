@@ -15,6 +15,7 @@ public class DemandeParticipation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_demande_participation")
     private Long idDemandeParticipation;
 
 
@@ -29,11 +30,11 @@ public class DemandeParticipation {
     private LocalDateTime datedemande;
 
     @ManyToOne
-    @JoinColumn(name = "idProjet", nullable = true)
+    @JoinColumn(name = "id_projet", nullable = true)
     private Projet projet;
 
     @ManyToOne
-    @JoinColumn(name = "idContributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
 
 

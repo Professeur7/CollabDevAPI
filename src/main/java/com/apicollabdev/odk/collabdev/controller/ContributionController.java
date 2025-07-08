@@ -1,5 +1,6 @@
 package com.apicollabdev.odk.collabdev.controller;
 
+import com.apicollabdev.odk.collabdev.dto.ContributionDTO;
 import com.apicollabdev.odk.collabdev.entity.Contribution;
 import com.apicollabdev.odk.collabdev.service.ContributionService;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,9 @@ public class ContributionController {
 
     private final ContributionService contributionService;
 
-    @PostMapping
-    public ResponseEntity<Contribution> create(@RequestBody Contribution contribution) {
-        return ResponseEntity.ok(contributionService.createContribution(contribution));
+    @PostMapping("/projet/{idprojet}/contributeur/{idcontributeur}")
+    public ResponseEntity<Contribution> create(@RequestBody ContributionDTO contributionDTO, @PathVariable("idprojet") long idProjet, @PathVariable("idcontributeur") long idContributeur) {
+        return ResponseEntity.ok(contributionService.createContribution(contributionDTO, idProjet, idContributeur));
     }
 
     @GetMapping

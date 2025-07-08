@@ -17,6 +17,7 @@ public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_notification")
     private Long idNotification;
 
     private String description;
@@ -28,7 +29,7 @@ public class Notification {
 
     private boolean etat;
 
-    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Recevoir> recevoirs;
 }
 

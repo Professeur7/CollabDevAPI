@@ -11,7 +11,9 @@ import lombok.*;
 public class Commentaire {
 
     @Id
-    private String idCommentaire;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_commentaire")
+    private int idCommentaire;
 
     private String auteur;
 
@@ -21,7 +23,7 @@ public class Commentaire {
     private boolean modifie;
 
     @ManyToOne
-    @JoinColumn(name = "idContributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
 
     @ManyToOne

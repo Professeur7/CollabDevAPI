@@ -8,6 +8,9 @@ import java.util.List;
 public class CoinsServiceImpl implements CoinsService {
     private CoinsRepository coinsRepository;
 
+    public CoinsServiceImpl() {
+    }
+
     @Override
     public Coins createCoins(Coins coins) {
         return coinsRepository.save(coins);

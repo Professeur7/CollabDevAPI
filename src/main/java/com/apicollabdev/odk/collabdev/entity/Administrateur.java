@@ -11,19 +11,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Administrateur {
+@PrimaryKeyJoinColumn(name = "id_administrateur")
+public class Administrateur extends Utilisateur{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idAdmin;
 
-    private String email;
-    private String password;
-
-    @OneToMany(mappedBy = "administrateur")
+    @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Coins> coins;
 
-    @OneToMany(mappedBy = "administrateur")
+    @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Badge> badge;
 }
 

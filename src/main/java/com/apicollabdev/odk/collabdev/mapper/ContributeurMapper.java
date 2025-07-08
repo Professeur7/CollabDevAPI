@@ -9,8 +9,8 @@ public class ContributeurMapper {
         Contributeur c = new Contributeur();
         c.setNom(dto.getNom());
         c.setPrenom(dto.getPrenom());
-        c.setEmail(dto.getEmail());
-        c.setPassword(dto.getPassword());
+       // c.setEmail(dto.getEmail());
+       // c.setPassword(dto.getPassword());
         c.setProfil(dto.getProfil());
         c.setNiveau(dto.getNiveau());
         return c;

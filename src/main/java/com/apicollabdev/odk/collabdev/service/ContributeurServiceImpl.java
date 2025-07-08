@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class ContributeurServiceImpl implements ContributeurService {
 
-    @Autowired
     private ContributeurRepository repository;
 
     @Override

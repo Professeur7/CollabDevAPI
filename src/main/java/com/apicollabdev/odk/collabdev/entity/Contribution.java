@@ -13,6 +13,7 @@ public class Contribution {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_contribution")
     private Long idContribution;
 
     private String titre;
@@ -24,11 +25,11 @@ public class Contribution {
     private LocalDateTime dateSoumission;
 
     @ManyToOne
-    @JoinColumn(name = "idProjet", nullable = true)
+    @JoinColumn(name = "id_projet", nullable = true)
     private Projet projet;
 
     @ManyToOne
-    @JoinColumn(name = "idContributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
 }
 

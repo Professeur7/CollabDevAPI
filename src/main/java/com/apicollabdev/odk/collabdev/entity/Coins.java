@@ -12,15 +12,16 @@ public class Coins {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_coins")
     private Long idCoin;
 
     private int nombreCoins;
 
     @ManyToOne
-    @JoinColumn(name = "idContributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
 
     @ManyToOne
-    @JoinColumn(name = "idAdministrateur", nullable = true)
+    @JoinColumn(name = "id_administrateur", nullable = true)
     private Administrateur administrateur;
 }

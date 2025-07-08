@@ -6,16 +6,17 @@ import java.time.LocalDateTime;
 public class Recevoir {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_recevoir")
     private int idRecevoir;
 
     private LocalDateTime dateRecevoir;
 
 
     @ManyToOne
-    @JoinColumn(name = "idNotification", nullable = true, referencedColumnName = "idNotification")
+    @JoinColumn(name = "id_notification", nullable = true)
     private Notification notification;
 
     @ManyToOne
-    @JoinColumn(name = "idContributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
 }

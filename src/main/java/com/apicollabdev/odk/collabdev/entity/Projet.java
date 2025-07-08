@@ -16,6 +16,7 @@ public class Projet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_projet")
     private Long idProjet;
 
     private String titre;
@@ -40,24 +41,24 @@ public class Projet {
     private List<Contribution> contributions;
 
     @ManyToOne
-    @JoinColumn(name = "id_ideeProjet")
+    @JoinColumn(name = "id_idee_projet")
     private IdeeProjet ideeProjet;
 
-    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DemandeParticipation> demandeParticipation;
 
-    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Demande> demandes;
 
-    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DebloqueProjet> debloqueProjets;
 
     @ManyToOne
-    @JoinColumn(name = "idDomaine", nullable = true)
+    @JoinColumn(name = "id_domaine", nullable = true)
     private Domaine domaine;
 
     @ManyToOne
-    @JoinColumn(name = "idGestionnaire", nullable = true)
+    @JoinColumn(name = "id_gestionnaire", nullable = true)
     private Gestionnaire gestionnaire;
 }
 

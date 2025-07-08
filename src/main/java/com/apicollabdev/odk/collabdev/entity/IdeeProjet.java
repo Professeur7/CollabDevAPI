@@ -14,6 +14,7 @@ public class IdeeProjet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_idee_projet")
     private Long idIdeeProjet;
 
     private String description;
@@ -26,10 +27,10 @@ public class IdeeProjet {
     private StatutIdee statut;
 
     @ManyToOne
-    @JoinColumn(name = "idContributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idProjet")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_projet")
     private Projet projet;
 }

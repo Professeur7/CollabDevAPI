@@ -4,17 +4,22 @@ import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.Demande;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.DemandeRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class DemandeServiceImpl implements DemandeService {
 
     private final DemandeRepository demandeRepository;
     private final ContributeurRepository contributeurRepository;
+
+    @Autowired
+    public DemandeServiceImpl(ContributeurRepository contributeurRepository, DemandeRepository demandeRepository) {
+        this.contributeurRepository = contributeurRepository;
+        this.demandeRepository = demandeRepository;
+    }
 
     @Override
     public Demande createDemande(Demande demande) {

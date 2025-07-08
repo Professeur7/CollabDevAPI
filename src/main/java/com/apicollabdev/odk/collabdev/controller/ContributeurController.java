@@ -13,7 +13,6 @@ import java.util.List;
 @RequestMapping("/api/contributeurs")
 public class ContributeurController {
 
-    @Autowired
     private ContributeurService service;
 
     @PostMapping("/inscription")

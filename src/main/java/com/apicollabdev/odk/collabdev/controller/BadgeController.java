@@ -17,8 +17,8 @@ public class BadgeController {
 
     private  final BadgeService badgeService;
 
-    @PostMapping
-    public ResponseEntity<Badge> create(@RequestBody Badge badge) {
+    @PostMapping()
+    public ResponseEntity<Badge> create(@RequestBody Badge badge ) {
         return ResponseEntity.ok(badgeService.createBadge(badge));
     }
 

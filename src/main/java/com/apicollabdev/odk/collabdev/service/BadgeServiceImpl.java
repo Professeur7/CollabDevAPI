@@ -1,6 +1,8 @@
 package com.apicollabdev.odk.collabdev.service;
 
+import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Badge;
+import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.BadgeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.util.List;
 public class BadgeServiceImpl implements BadgeService {
 
     private final BadgeRepository badgeRepository;
+
 
     @Override
     public Badge createBadge(Badge badge) {

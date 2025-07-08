@@ -14,6 +14,7 @@ public class Demande {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_demande")
     private Long idDemande;
 
     private String description;
@@ -26,11 +27,11 @@ public class Demande {
     private ChoixRole choixRole;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idProjet", nullable = true)
+    @JoinColumn(name = "id_projet", nullable = true)
     private Projet projet;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idContributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
 
 

@@ -4,21 +4,23 @@ package com.apicollabdev.odk.collabdev.controller;
 import com.apicollabdev.odk.collabdev.entity.Demande;
 import com.apicollabdev.odk.collabdev.service.DemandeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.ResponseEntity.created;
+
 @RestController
 @RequestMapping("/api/demandes")
-@RequiredArgsConstructor
 public class DemandeController {
 
-    private final DemandeService demandeService;
+    private DemandeService demandeService;
 
     @PostMapping
     public ResponseEntity<Demande> create(@RequestBody Demande demande) {
-        return ResponseEntity.ok(demandeService.createDemande(demande));
+        return new ResponseEntity<Demande>(demandeService.createDemande(demande), HttpStatus.CREATED);
     }
 
     @GetMapping

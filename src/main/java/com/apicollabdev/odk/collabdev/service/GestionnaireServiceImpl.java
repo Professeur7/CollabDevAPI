@@ -33,8 +33,8 @@ public class GestionnaireServiceImpl implements GestionnaireService {
         existant.setValiderDemande(g.isValiderDemande());
         existant.setNom(g.getNom());
         existant.setPrenom(g.getPrenom());
-        existant.setEmail(g.getEmail());
-        existant.setPassword(g.getPassword());
+        //existant.setEmail(g.getEmail());
+       // existant.setPassword(g.getPassword());
         // Tu peux compléter avec plus de champs si nécessaire
         return repository.save(existant);
     }
