@@ -16,12 +16,13 @@ import java.util.List;
 public class NotificationController {
 
     private final NotificationService notificationService;
-    AdministrateurRepository administrateurRepository;
+    private final AdministrateurRepository administrateurRepository;
 
-    @PostMapping("/administrateur/{idadmin}")
+    @PostMapping("/administrateurs/{idadmin}")
     public ResponseEntity<Notification> create(@RequestBody Notification notification,@PathVariable("idadmin") long idAdmin) {
-        Administrateur a = administrateurRepository.findById(idAdmin).get();
-        return ResponseEntity.ok(notificationService.createNotification(notification));
+        Administrateur a = administrateurRepository.findById(idAdmin)
+                .orElseThrow(() -> new RuntimeException("Administrateur non trouv<UNK>")) ;
+        return ResponseEntity.ok(notificationService.createNotification(notification, idAdmin));
     }
 
     @GetMapping
