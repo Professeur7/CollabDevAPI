@@ -1,6 +1,7 @@
 package com.apicollabdev.odk.collabdev.controller;
 
 
+import com.apicollabdev.odk.collabdev.dto.DemandeDTO;
 import com.apicollabdev.odk.collabdev.entity.Demande;
 import com.apicollabdev.odk.collabdev.service.DemandeService;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +19,9 @@ public class DemandeController {
 
     private DemandeService demandeService;
 
-    @PostMapping
-    public ResponseEntity<Demande> create(@RequestBody Demande demande) {
-        return new ResponseEntity<Demande>(demandeService.createDemande(demande), HttpStatus.CREATED);
+    @PostMapping("/{idcontributeur}/projets/{idprojet}")
+    public ResponseEntity<Demande> create(@RequestBody DemandeDTO demandeDTO, @PathVariable("idcontributeur") long idContributeur, @PathVariable("idprojet") long idProjet) {
+        return ResponseEntity.ok(demandeService.createDemande(demandeDTO, idContributeur, idProjet));
     }
 
     @GetMapping

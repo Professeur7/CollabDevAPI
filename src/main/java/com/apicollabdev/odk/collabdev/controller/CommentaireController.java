@@ -16,7 +16,7 @@ public class CommentaireController {
     private final CommentaireService commentaireService;
 
     @PostMapping
-    public ResponseEntity<Commentaire> create(@RequestBody Commentaire commentaire) {
+    public ResponseEntity<Commentaire> create(@RequestBody Commentaire commentaire ) {
         return ResponseEntity.ok(commentaireService.createCommentaire(commentaire));
     }
 
