@@ -33,4 +33,9 @@ public class IdeeProjet {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_projet")
     private Projet projet;
+
+    @ManyToOne
+    @JoinColumn(name = "id_domaine", nullable = true)
+    private Domaine domaine;
+
 }
