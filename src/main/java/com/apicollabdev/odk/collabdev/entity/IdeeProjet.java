@@ -7,7 +7,6 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class IdeeProjet {
@@ -33,4 +32,60 @@ public class IdeeProjet {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_projet")
     private Projet projet;
+
+    public Long getIdIdeeProjet() {
+        return idIdeeProjet;
+    }
+
+    public void setIdIdeeProjet(Long idIdeeProjet) {
+        this.idIdeeProjet = idIdeeProjet;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Contributeur getContributeur() {
+        return contributeur;
+    }
+
+    public void setContributeur(Contributeur contributeur) {
+        this.contributeur = contributeur;
+    }
+
+    public StatutIdee getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutIdee statut) {
+        this.statut = statut;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
 }
