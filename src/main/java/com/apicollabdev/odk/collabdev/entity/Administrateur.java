@@ -32,6 +32,11 @@ public class Administrateur extends Utilisateur{
     @JsonManagedReference
     private List<Badge> badge;
 
+    @OneToMany(mappedBy = "administrateur")
+    private List<Administrateur> administrateurs;
+
+    @OneToMany(mappedBy = "domaine")
+    private List<Domaine> domaine;
 
 }
 

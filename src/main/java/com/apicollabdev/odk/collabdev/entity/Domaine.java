@@ -22,5 +22,10 @@ public class Domaine {
     private String description;
 
     @OneToMany(mappedBy = "domaine")
-    private List<Projet> projets;
+    private List<IdeeProjet> ideeProjets;
+
+    @ManyToOne
+    @JoinColumn(name = "id_administrateur", nullable = true)
+    private Administrateur administrateur;
+
 }
