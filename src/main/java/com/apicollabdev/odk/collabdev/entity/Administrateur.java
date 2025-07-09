@@ -31,5 +31,9 @@ public class Administrateur extends Utilisateur{
     @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Badge> badge;
+
+    @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Notification> notification;
 }
 
