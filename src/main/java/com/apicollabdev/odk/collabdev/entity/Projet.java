@@ -1,17 +1,13 @@
 package com.apicollabdev.odk.collabdev.entity;
 
 
-import com.apicollabdev.odk.collabdev.enums.StatutIdee;
 import com.apicollabdev.odk.collabdev.enums.StatutProjet;
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
 public class Projet {
 
     @Id
@@ -60,5 +56,109 @@ public class Projet {
     @ManyToOne
     @JoinColumn(name = "id_gestionnaire", nullable = true)
     private Gestionnaire gestionnaire;
+
+    public int getIdProjet() {
+        return idProjet;
+    }
+
+    public void setIdProjet(Long idProjet) {
+        this.idProjet = idProjet;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public boolean isCahierDeCharge() {
+        return cahierDeCharge;
+    }
+
+    public void setCahierDeCharge(boolean cahierDeCharge) {
+        this.cahierDeCharge = cahierDeCharge;
+    }
+
+    public StatutProjet getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutProjet statut) {
+        this.statut = statut;
+    }
+
+    public List<Contribution> getContributions() {
+        return contributions;
+    }
+
+    public void setContributions(List<Contribution> contributions) {
+        this.contributions = contributions;
+    }
+
+    public IdeeProjet getIdeeProjet() {
+        return ideeProjet;
+    }
+
+    public void setIdeeProjet(IdeeProjet ideeProjet) {
+        this.ideeProjet = ideeProjet;
+    }
+
+    public List<DemandeParticipation> getDemandeParticipation() {
+        return demandeParticipation;
+    }
+
+    public void setDemandeParticipation(List<DemandeParticipation> demandeParticipation) {
+        this.demandeParticipation = demandeParticipation;
+    }
+
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    public void setDemandes(List<Demande> demandes) {
+        this.demandes = demandes;
+    }
+
+    public List<DebloqueProjet> getDebloqueProjets() {
+        return debloqueProjets;
+    }
+
+    public void setDebloqueProjets(List<DebloqueProjet> debloqueProjets) {
+        this.debloqueProjets = debloqueProjets;
+    }
+
+    public Domaine getDomaine() {
+        return domaine;
+    }
+
+    public void setDomaine(Domaine domaine) {
+        this.domaine = domaine;
+    }
+
+    public Gestionnaire getGestionnaire() {
+        return gestionnaire;
+    }
+
+    public void setGestionnaire(Gestionnaire gestionnaire) {
+        this.gestionnaire = gestionnaire;
+    }
 }
 
