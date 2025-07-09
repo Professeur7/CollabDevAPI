@@ -14,6 +14,8 @@ public class Fonctionnalite {
     private int pointFonctionnalite;
     @Enumerated(EnumType.STRING)
     private StatutProjet statutP;
+    private String nomFonctionnalite;
+    private String DescriptionFonctionnalite;
 
     @ManyToOne
     @JoinColumn(name = "projet_id",
@@ -58,11 +60,19 @@ public class Fonctionnalite {
         this.projet = projet;
     }
 
-    public Gestionnaire getGestionnaires() {
-        return gestionnaires;
+    public String getNomFonctionnalite() {
+        return nomFonctionnalite;
     }
 
-    public void setGestionnaires(Gestionnaire gestionnaires) {
-        this.gestionnaires = gestionnaires;
+    public void setNomFonctionnalite(String nomFonctionnalite) {
+        this.nomFonctionnalite = nomFonctionnalite;
+    }
+
+    public String getDescriptionFonctionnalite() {
+        return DescriptionFonctionnalite;
+    }
+
+    public void setDescriptionFonctionnalite(String descriptionFonctionnalite) {
+        DescriptionFonctionnalite = descriptionFonctionnalite;
     }
 }

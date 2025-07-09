@@ -23,5 +23,6 @@ public class Gestionnaire extends Contributeur{
     private List<Projet> projets;
 
 
+
 }
 
