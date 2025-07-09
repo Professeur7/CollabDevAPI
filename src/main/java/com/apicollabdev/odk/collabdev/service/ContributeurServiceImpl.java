@@ -3,15 +3,19 @@ package com.apicollabdev.odk.collabdev.service;
 
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@RequiredArgsConstructor
+@Data
 @Service
 public class ContributeurServiceImpl implements ContributeurService {
 
-    private ContributeurRepository repository;
+    private final ContributeurRepository repository;
 
     @Override
     public Contributeur inscription(Contributeur contributeur) {

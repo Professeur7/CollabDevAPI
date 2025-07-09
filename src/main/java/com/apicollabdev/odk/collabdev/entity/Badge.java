@@ -1,6 +1,7 @@
 package com.apicollabdev.odk.collabdev.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,6 +28,7 @@ public class Badge {
 
     @ManyToOne
     @JoinColumn(name = "id_administrateur", nullable = true)
+    @JsonBackReference
     private Administrateur administrateur;
 
     public Long getIdBadge() {

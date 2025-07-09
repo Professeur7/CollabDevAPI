@@ -14,10 +14,18 @@ import java.util.List;
 public class BadgeServiceImpl implements BadgeService {
 
     private final BadgeRepository badgeRepository;
+    private final AdministrateurRepository administrateurRepository;
 
 
     @Override
-    public Badge createBadge(Badge badge) {
+    public Badge createBadge(Badge badge, long idAdmin) {
+        Administrateur a = administrateurRepository.findById(idAdmin)
+                        .orElseThrow(() -> new RuntimeException("Cet admin n'existe pas"));
+        badge.setNom(badge.getNom());
+        badge.setDescription(badge.getDescription());
+        badge.setAdministrateur(a);
+        badge.setNombre(badge.getNombre());
+        badge.setImage(badge.getImage());
         return badgeRepository.save(badge);
     }
 

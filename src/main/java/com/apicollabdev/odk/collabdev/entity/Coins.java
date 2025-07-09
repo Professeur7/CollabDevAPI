@@ -1,6 +1,7 @@
 package com.apicollabdev.odk.collabdev.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +24,6 @@ public class Coins {
 
     @ManyToOne
     @JoinColumn(name = "id_administrateur", nullable = true)
+    @JsonBackReference
     private Administrateur administrateur;
 }

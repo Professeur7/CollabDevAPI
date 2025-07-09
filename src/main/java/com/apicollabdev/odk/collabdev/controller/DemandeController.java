@@ -4,6 +4,8 @@ package com.apicollabdev.odk.collabdev.controller;
 import com.apicollabdev.odk.collabdev.dto.DemandeDTO;
 import com.apicollabdev.odk.collabdev.entity.Demande;
 import com.apicollabdev.odk.collabdev.service.DemandeService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +15,12 @@ import java.util.List;
 
 import static org.springframework.http.ResponseEntity.created;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/demandes")
 public class DemandeController {
 
-    private DemandeService demandeService;
+    private final DemandeService demandeService;
 
     @PostMapping("/{idcontributeur}/projets/{idprojet}")
     public ResponseEntity<Demande> create(@RequestBody DemandeDTO demandeDTO, @PathVariable("idcontributeur") long idContributeur, @PathVariable("idprojet") long idProjet) {

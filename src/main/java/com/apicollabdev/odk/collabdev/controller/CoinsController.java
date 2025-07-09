@@ -1,5 +1,7 @@
 package com.apicollabdev.odk.collabdev.controller;
+import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Coins;
+import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.service.CoinsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CoinsController {
 
-    private CoinsService coinsService;
+    private final CoinsService coinsService;
+    private final AdministrateurRepository administrateurRepository;
 
-    @PostMapping
-    public ResponseEntity<Coins> create(@RequestBody Coins coins) {
-        return ResponseEntity.ok(coinsService.createCoins(coins));
+    @PostMapping("/administrateur/{idadmin}")
+    public ResponseEntity<Coins> create(@RequestBody Coins coins, @PathVariable("idadmin") long idAmin ) {
+        Administrateur a = administrateurRepository.findById(idAmin)
+                .orElseThrow( ()-> new RuntimeException("Administrateur non trouvé"));
+        return ResponseEntity.ok(coinsService.createCoins(coins, idAmin));
     }
 
     @GetMapping
