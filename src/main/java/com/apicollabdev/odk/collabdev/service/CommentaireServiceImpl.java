@@ -1,7 +1,12 @@
 package com.apicollabdev.odk.collabdev.service;
 
+import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Commentaire;
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
+import com.apicollabdev.odk.collabdev.entity.Projet;
 import com.apicollabdev.odk.collabdev.repository.CommentaireRepository;
+import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
+import com.apicollabdev.odk.collabdev.repository.ProjetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,25 +17,45 @@ import java.util.List;
 public class CommentaireServiceImpl implements CommentaireService {
 
     private CommentaireRepository commentaireRepository;
+    private final ProjetRepository projetRepository;
+    private final ContributeurRepository contributeurRepository;
 
     @Override
-    public Commentaire createCommentaire(Commentaire commentaire) {
+    public Commentaire createCommentaire(Commentaire commentaire, long contributeur, long projet) {
+        Contributeur c = contributeurRepository.findById(contributeur)
+                .orElseThrow(() -> new RuntimeException("Contributeur non trouvé"));
+        Projet p = projetRepository.findById(projet)
+                .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
+
+        commentaire.setAuteur(commentaire.getAuteur());
+        commentaire.setContenu(commentaire.getContenu());
+        commentaire.setContributeur(c);
+        commentaire.setProjet(p);
+
         return commentaireRepository.save(commentaire);
     }
 
     @Override
-    public List<Commentaire> getAllCommentaires() {
+    public List<Commentaire> getAllCommentaires(Long idContributeur) {
+        Contributeur c = contributeurRepository.findById(idContributeur)
+                .orElseThrow(() -> new RuntimeException("Contributeur non trouvé"));
+
         return commentaireRepository.findAll();
     }
 
     @Override
-    public Commentaire getById(Long id) {
+    public Commentaire getById(Long id, Long idContributeur) {
+        Contributeur c = contributeurRepository.findById(idContributeur)
+                .orElseThrow(() -> new RuntimeException("Contributeur non trouvé"));
         return commentaireRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Commentaire non trouvé"));
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id, Long idContributeur) {
+        Contributeur c = contributeurRepository.findById(idContributeur)
+                .orElseThrow(() -> new RuntimeException("Contributeur non trouvé"));
+
         commentaireRepository.deleteById(id);
     }
 }

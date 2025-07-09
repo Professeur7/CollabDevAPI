@@ -1,6 +1,10 @@
 package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.entity.Commentaire;
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
+import com.apicollabdev.odk.collabdev.entity.Projet;
+import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
+import com.apicollabdev.odk.collabdev.repository.ProjetRepository;
 import com.apicollabdev.odk.collabdev.service.CommentaireService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,25 +18,37 @@ import java.util.List;
 public class CommentaireController {
 
     private final CommentaireService commentaireService;
+    private final ContributeurRepository contributeurRepository;
+    private final ProjetRepository projetRepository;
 
-    @PostMapping
-    public ResponseEntity<Commentaire> create(@RequestBody Commentaire commentaire ) {
-        return ResponseEntity.ok(commentaireService.createCommentaire(commentaire));
+    @PostMapping("/{idContributeur}")
+    public ResponseEntity<Commentaire> create(@RequestBody Commentaire commentaire,@PathVariable("idContributeur") long idContributeur, @RequestParam("idProjet") long idProjet ) {
+        Contributeur c = contributeurRepository.findById(idContributeur).orElseThrow(()-> new RuntimeException("Contributeur non trouvé"));
+        Projet p = projetRepository.findById(idProjet).orElseThrow(()-> new RuntimeException("Projet non trouvé"));
+        return ResponseEntity.ok(commentaireService.createCommentaire(commentaire, idContributeur, idProjet));
     }
 
-    @GetMapping
-    public List<Commentaire> getAll() {
-        return commentaireService.getAllCommentaires();
+    @GetMapping("{idContributeur}")
+    public List<Commentaire> getAll(@PathVariable("idContributeur") long idContributeur) {
+        Contributeur contributeur = contributeurRepository.findById(idContributeur).
+                orElseThrow(()->new RuntimeException("Contributeur n'existe pas"));
+
+        return commentaireService.getAllCommentaires(idContributeur);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Commentaire> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(commentaireService.getById(id));
+    @GetMapping("/{idContributeur}")
+    public ResponseEntity<Commentaire> getById(@RequestParam Long id, @PathVariable("idContributeur") long idContributeur) {
+        Contributeur contributeur = contributeurRepository.findById(idContributeur).
+                orElseThrow(()->new RuntimeException("Contributeur n'existe pas"));
+        return ResponseEntity.ok(commentaireService.getById(id,idContributeur));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        commentaireService.deleteById(id);
+    @DeleteMapping("/{idContributeur}")
+    public ResponseEntity<Void> delete(@RequestParam Long id, @PathVariable("idContributeur") long idContributeur) {
+        Contributeur contributeur = contributeurRepository.findById(idContributeur).
+                orElseThrow(()->new RuntimeException("Contributeur n'existe pas"));
+
+        commentaireService.deleteById(id,idContributeur);
         return ResponseEntity.noContent().build();
     }
 }
