@@ -24,5 +24,9 @@ public class Domaine {
     @OneToMany(mappedBy = "domaine")
     private List<IdeeProjet> ideeProjets;
 
+    @ManyToOne
+    @JoinColumn(name = "id_administrateur", nullable = true)
+    private Administrateur administrateur;
+
 
 }
