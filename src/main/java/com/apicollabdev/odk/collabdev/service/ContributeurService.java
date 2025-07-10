@@ -9,9 +9,11 @@ public interface ContributeurService {
     Contributeur inscription(Contributeur contributeur);
     Contributeur connexion(String email, String password);
     Void deconnexion(Long idContributeur);
-    Contributeur createContributeur(Contributeur c);
+    Contributeur createContributeur();
     Contributeur getContributeurById(Long id);
     List<Contributeur> getAllContributeurs();
     void deleteContributeur(Long id);
+
+    boolean existsByNom(String nom);
 }
 

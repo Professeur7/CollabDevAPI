@@ -9,31 +9,39 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "contributeurs")  // Spécification explicite du nom de table
 @PrimaryKeyJoinColumn(name = "id_contributeur")
-public class Contributeur extends Utilisateur{
+public class Contributeur extends Utilisateur {
 
-
-    private String nom;
+    @Column(nullable = false)
     private String prenom;
 
+    @Column(nullable = false, unique = true)
+    private String nom;
+
+    @Column(nullable = false)
+    private String password;
+
     @Enumerated(EnumType.STRING)
-    private Profil profil; // DEVELOPPER, DESIGNER, etc
+    @Column(nullable = false)
+    private Profil profil;
 
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
 
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean active = true; // Par défaut actif
 
-//Relation
-
-
+    // Relations
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IdeeProjet> ideeProjets;
-
 
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Coins> coins;
@@ -52,6 +60,4 @@ public class Contributeur extends Utilisateur{
 
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Recevoir> recevoirs;
-
 }
-
