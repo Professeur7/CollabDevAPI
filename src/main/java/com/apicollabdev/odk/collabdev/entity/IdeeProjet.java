@@ -9,7 +9,6 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class IdeeProjet {
@@ -38,6 +37,7 @@ public class IdeeProjet {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_projet")
     private Projet projet;
+
 
     @ManyToOne
     @JoinColumn(name = "domaine_id", nullable = true)
