@@ -1,5 +1,6 @@
 package com.apicollabdev.odk.collabdev.controller;
 
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.IdeeProjet;
 import com.apicollabdev.odk.collabdev.service.IdeeProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,8 @@ public class IdeeProjetController {
 
     // Créer une idée de projet
     @PostMapping
-    public ResponseEntity<IdeeProjet> create(@RequestBody IdeeProjet ideeProjet) {
-        IdeeProjet saved = ideeProjetService.createIdeeProjet(ideeProjet);
-        return ResponseEntity.ok(saved);
+    public ResponseEntity<IdeeProjet> create(@RequestBody IdeeProjet ideeProjet, Contributeur contributeur) {
+        return ResponseEntity.ok(ideeProjetService.createIdeeProjet(ideeProjet, new Contributeur()));
     }
 
     // Obtenir toutes les idées
@@ -41,9 +41,8 @@ public class IdeeProjetController {
         return ResponseEntity.ok(idee);
     }
 
-    // Supprimer une idée
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         ideeProjetService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

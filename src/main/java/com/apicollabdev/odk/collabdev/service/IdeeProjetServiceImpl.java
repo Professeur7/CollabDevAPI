@@ -1,5 +1,6 @@
 package com.apicollabdev.odk.collabdev.service;
 
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.IdeeProjet;
 import com.apicollabdev.odk.collabdev.repository.IdeeProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class IdeeProjetServiceImpl implements IdeeProjetService {
     }
 
     @Override
-    public IdeeProjet createIdeeProjet(IdeeProjet ideeProjet) {
+    public IdeeProjet createIdeeProjet(IdeeProjet ideeProjet, Contributeur contributeur ) {
         return ideeProjetRepository.save(ideeProjet);
     }
 
@@ -28,15 +29,33 @@ public class IdeeProjetServiceImpl implements IdeeProjetService {
     }
 
     @Override
-    public IdeeProjet getById(Long id) {
-        return ideeProjetRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Idée projet non trouvée avec l'id : " + id));
+
+    public IdeeProjet getById(int id) {
+        return ideeProjetRepository.findById((id))
+                .orElseThrow(() -> new RuntimeException("IdeeProjet non trouvé avec l'id : " + id));
+
     }
 
     @Override
-    public void deleteById(Long id) {
+    public IdeeProjet updateIdeeProjet(int id, IdeeProjet updatedIdeeProjet) {
+        IdeeProjet existingIdeeProjet = ideeProjetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("IdeeProjet non trouvée avec l'id : " + id));
+
+        // Mise à jour des champs (ajuste les champs selon ton entité)
+        existingIdeeProjet.setTitre(updatedIdeeProjet.getTitre());
+        existingIdeeProjet.setDescription(updatedIdeeProjet.getDescription());
+        existingIdeeProjet.setDomaine(updatedIdeeProjet.getDomaine());
+        existingIdeeProjet.setNiveau(updatedIdeeProjet.getNiveau());
+        existingIdeeProjet.setDateCreation(updatedIdeeProjet.getDateCreation());
+
+        return ideeProjetRepository.save(existingIdeeProjet);
+    }
+
+    @Override
+    public void deleteById(int id) {
         if (!ideeProjetRepository.existsById(id)) {
-            throw new RuntimeException("L'idée projet avec l'id " + id + " n'existe pas.");
+
+            throw new RuntimeException("Le IdeeProjet avec l'id " + id + " n'existe pas.");
         }
         ideeProjetRepository.deleteById(id);
     }

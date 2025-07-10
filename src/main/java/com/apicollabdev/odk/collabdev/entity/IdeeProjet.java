@@ -1,6 +1,8 @@
 package com.apicollabdev.odk.collabdev.entity;
 
+import com.apicollabdev.odk.collabdev.enums.Niveau;
 import com.apicollabdev.odk.collabdev.enums.StatutIdee;
+import com.apicollabdev.odk.collabdev.enums.StatutProjet;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,16 +16,19 @@ public class IdeeProjet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_idee_projet")
-    private Long idIdeeProjet;
+    private int idIdeeProjet;
 
     private String description;
 
     private String titre;
 
-    private LocalDate date;
+    private LocalDate dateCreation;
 
     @Enumerated(EnumType.STRING)
     private StatutIdee statut;
+
+    @Enumerated(EnumType.STRING)
+    private Niveau niveau;
 
     @ManyToOne
     @JoinColumn(name = "id_contributeur", nullable = true)
@@ -33,11 +38,16 @@ public class IdeeProjet {
     @JoinColumn(name = "id_projet")
     private Projet projet;
 
-    public Long getIdIdeeProjet() {
+
+    @ManyToOne
+    @JoinColumn(name = "domaine_id", nullable = true)
+    private Domaine domaine;
+
+    public int getIdIdeeProjet() {
         return idIdeeProjet;
     }
 
-    public void setIdIdeeProjet(Long idIdeeProjet) {
+    public void setIdIdeeProjet(int idIdeeProjet) {
         this.idIdeeProjet = idIdeeProjet;
     }
 
@@ -57,20 +67,12 @@ public class IdeeProjet {
         this.titre = titre;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDateCreation() {
+        return dateCreation;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Contributeur getContributeur() {
-        return contributeur;
-    }
-
-    public void setContributeur(Contributeur contributeur) {
-        this.contributeur = contributeur;
+    public void setDateCreation(LocalDate dateCreation) {
+        this.dateCreation = dateCreation;
     }
 
     public StatutIdee getStatut() {
@@ -81,11 +83,35 @@ public class IdeeProjet {
         this.statut = statut;
     }
 
+    public Niveau getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
+    }
+
+    public Contributeur getContributeur() {
+        return contributeur;
+    }
+
+    public void setContributeur(Contributeur contributeur) {
+        this.contributeur = contributeur;
+    }
+
     public Projet getProjet() {
         return projet;
     }
 
     public void setProjet(Projet projet) {
         this.projet = projet;
+    }
+
+    public Domaine getDomaine() {
+        return domaine;
+    }
+
+    public void setDomaine(Domaine domaine) {
+        this.domaine = domaine;
     }
 }
