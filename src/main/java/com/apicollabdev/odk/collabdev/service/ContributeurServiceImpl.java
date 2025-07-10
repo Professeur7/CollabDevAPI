@@ -3,10 +3,8 @@ package com.apicollabdev.odk.collabdev.service;
 
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +35,7 @@ public class ContributeurServiceImpl implements ContributeurService {
 
 
     @Override
-    public Contributeur createContributeur(Contributeur c) {
+    public Contributeur createContributeur() {
         return repository.save(c);
     }
 
