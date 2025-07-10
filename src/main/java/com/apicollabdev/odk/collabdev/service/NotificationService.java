@@ -10,3 +10,4 @@ public interface NotificationService {
     Notification getById(Long id);
     void deleteById(Long id);
 }
+
