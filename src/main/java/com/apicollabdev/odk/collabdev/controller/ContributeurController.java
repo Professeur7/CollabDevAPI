@@ -5,6 +5,7 @@ import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.mapper.ContributeurMapper;
 import com.apicollabdev.odk.collabdev.service.ContributeurService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,11 +35,13 @@ public class ContributeurController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasAuthority('id')")
     public Contributeur create(@RequestBody ContributeurDTO dto) {
-        return contributeurService.createContributeur(ContributeurMapper.toEntity(dto));
+        return contributeurService.createContributeur();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('id')")
     public Contributeur getById(@PathVariable Long id) {
         return contributeurService.getContributeurById(id);
     }
@@ -49,6 +52,7 @@ public class ContributeurController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('id')")
     public void delete(@PathVariable Long id) {
         contributeurService.deleteContributeur(id);
     }

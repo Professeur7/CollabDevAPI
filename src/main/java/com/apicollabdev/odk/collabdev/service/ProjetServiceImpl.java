@@ -36,11 +36,11 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
+
     public Projet getProjetById(Long id,Long id_contributeur) {
 
         Contributeur contributeur = contributeurRepository.findById(id_contributeur)
                 .orElseThrow(() -> new RuntimeException("Cet admin n'existe pas"));
-
 
         return projetRepository.findById(id).orElse(null);
     }

@@ -1,6 +1,8 @@
 package com.apicollabdev.odk.collabdev.controller;
 
+import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Notification;
+import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,13 @@ public class NotificationController {
 
     private final NotificationService notificationService;
 
-    @PostMapping
-    public ResponseEntity<Notification> create(@RequestBody Notification notification) {
-        return ResponseEntity.ok(notificationService.createNotification(notification));
+    private final AdministrateurRepository administrateurRepository;
+
+    @PostMapping("/administrateurs/{idadmin}")
+    public ResponseEntity<Notification> create(@RequestBody Notification notification,@PathVariable("idadmin") long idAdmin) {
+        Administrateur a = administrateurRepository.findById(idAdmin)
+                .orElseThrow(() -> new RuntimeException("Administrateur non trouv<UNK>")) ;
+        return ResponseEntity.ok(notificationService.createNotification(notification, idAdmin));
     }
 
     @GetMapping
