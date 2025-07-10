@@ -13,13 +13,14 @@ import java.util.List;
 public class AdministrateurServiceImpl implements AdministrateurService {
 
     BadgeRepository badgeRepository;
-    AdministrateurRepository administrateurRepository;
     CoinsRepository coinsRepository;
+    AdministrateurRepository administrateurRepository;
+
 
     //creation de badges
     public Badge creerBadges(Badge badge, Administrateur administrateur) throws AccessDeniedException {
         if(administrateur == null) {
-            throw new AccessDeniedException("Acces bloque pour les contributeurs");
+            throw new AccessDeniedException("Acces bloquer pour les contributeurs");
         }
         return badgeRepository.save(badge);
     }
@@ -27,7 +28,7 @@ public class AdministrateurServiceImpl implements AdministrateurService {
     //Mise a jours des badges de badges
     public Badge updateBadge(int id,Badge badge, Administrateur administrateur) throws AccessDeniedException {
         if(administrateur == null) {
-            throw new AccessDeniedException("Acces bloque pour les contributeurs");
+            throw new AccessDeniedException("Acces bloquer pour les contributeurs");
         }
         Badge badge1 = new Badge();
         badge1.setIdBadge(badge.getIdBadge());
