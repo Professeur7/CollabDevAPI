@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IdeeProjetRepository extends JpaRepository<IdeeProjet, Long> {
+public interface IdeeProjetRepository extends JpaRepository<IdeeProjet, Integer> {
     List<IdeeProjet> findByStatut(StatutIdee statut);
 }
 

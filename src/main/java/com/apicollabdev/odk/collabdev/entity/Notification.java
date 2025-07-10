@@ -2,6 +2,7 @@ package com.apicollabdev.odk.collabdev.entity;
 
 
 import com.apicollabdev.odk.collabdev.enums.TypeNotification;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +18,12 @@ public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_notification")
     private Long idNotification;
+
+    @ManyToOne
+    @JoinColumn(name = "idAdministrateur",  nullable = true, referencedColumnName = "id_administrateur")
+    @JsonBackReference
+    private Administrateur administrateur;
 
     private String description;
 
@@ -31,5 +36,6 @@ public class Notification {
 
     @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Recevoir> recevoirs;
+
 }
 
