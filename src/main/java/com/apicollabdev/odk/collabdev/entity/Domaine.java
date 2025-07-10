@@ -28,4 +28,5 @@ public class Domaine {
     @JoinColumn(name = "id_administrateur", nullable = true)
     private Administrateur administrateur;
 
+
 }
