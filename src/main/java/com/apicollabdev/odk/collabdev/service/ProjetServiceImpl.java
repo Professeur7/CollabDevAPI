@@ -15,21 +15,25 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public Projet createProjet(Projet projet) {
+
         return projetRepository.save(projet);
     }
 
     @Override
     public Projet getProjetById(Long id) {
+
         return projetRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Projet> getAllProjets() {
+
         return projetRepository.findAll();
     }
 
     @Override
     public void deleteProjet(Long id) {
+
         projetRepository.deleteById(id);
     }
 }
