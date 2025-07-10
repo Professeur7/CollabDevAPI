@@ -1,10 +1,17 @@
 package com.apicollabdev.odk.collabdev.controller;
 
 
+import com.apicollabdev.odk.collabdev.entity.Administrateur;
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.Projet;
+import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
+import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.service.ProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController
@@ -14,28 +21,46 @@ public class ProjetController {
 
 
     private final ProjetService projetService;
+    private final AdministrateurRepository administrateurRepository;
+    private final ContributeurRepository contributeurRepository;
 
-    public ProjetController(ProjetService projetService) {
+    public ProjetController(ProjetService projetService, AdministrateurRepository administrateurRepository, ContributeurRepository contributeurRepository) {
         this.projetService = projetService;
+        this.administrateurRepository = administrateurRepository;
+        this.contributeurRepository = contributeurRepository;
     }
 
-    @PostMapping
-    public Projet create(@RequestBody Projet p) {
-        return projetService.createProjet(p);
+    @PostMapping("/{id_contributeur}")
+    public Projet create(@RequestBody Projet p,@PathVariable("id_contributeur") long id_contributeur) {
+      Contributeur contributeur = contributeurRepository.findById(id_contributeur).
+                orElseThrow(()-> new RuntimeException("Le administrateur n'existe pas"));
+
+
+        return projetService.createProjet(p,id_contributeur);
     }
 
-    @GetMapping("/{id}")
-    public Projet getById(@PathVariable Long id) {
-        return projetService.getProjetById(id);
+    @GetMapping("/{id_contributeur}")
+    public Projet getById(@RequestParam Long id, @PathVariable Long id_contributeur) {
+        Contributeur contributeur = contributeurRepository.findById(id_contributeur)
+                .orElseThrow(() -> new RuntimeException("Le administrateur n'existe pas"));
+        return projetService.getProjetById(id, id_contributeur);
     }
 
-    @GetMapping
-    public List<Projet> getAll() {
-        return projetService.getAllProjets();
+    @GetMapping("recupère/{id_contributeur}")
+    public List<Projet> getAll(@PathVariable Long id_contributeur) {
+        Contributeur contributeur = contributeurRepository.findById(id_contributeur)
+                .orElseThrow(() -> new RuntimeException("Le contributeur n'existe pas"));
+        return projetService.getAllProjets(id_contributeur);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        projetService.deleteProjet(id);
+    @DeleteMapping("supprime/{idAdmin}")
+    public ResponseEntity<String> deleteProjet(@RequestParam Long id, @PathVariable Long idAdmin) {
+        try {
+            projetService.deleteProjet(id, idAdmin);
+            return ResponseEntity.ok("Projet supprimé avec succès.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
+
 }
