@@ -42,9 +42,10 @@ public class GestionnaireServiceImpl implements GestionnaireService {
 
             // Attribuer des coins si nécessaire
             if (gestionnaireDTO.getCoinsAAttribuer() > 0) {
-                Contributeur contributeur = contribution.getContributeur();
-                contributeur.setCoins(contributeur.getCoins() + gestionnaireDTO.getCoinsAAttribuer());
-                contributeurRepository.save(contributeur);
+                //Contributeur contributeur = contribution.getContributeur();
+                // contributeur.setCoin(contributeur.getCoins() + gestionnaireDTO.getCoinsAAttribuer());
+
+                //contributeurRepository.save(contributeur);
             }
         } else {
             throw new RuntimeException("Contribution ou Gestionnaire non trouvé");
