@@ -19,7 +19,7 @@ public class Contribution {
     private String titre;
 
     private String contenu;
-
+    private boolean validee = false;
     private String type; // Exemple : "code", "design", "idée", etc.
 
     private LocalDateTime dateSoumission;
@@ -31,5 +31,69 @@ public class Contribution {
     @ManyToOne
     @JoinColumn(name = "id_contributeur", nullable = true)
     private Contributeur contributeur;
+
+    public Long getIdContribution() {
+        return idContribution;
+    }
+
+    public void setIdContribution(Long idContribution) {
+        this.idContribution = idContribution;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public LocalDateTime getDateSoumission() {
+        return dateSoumission;
+    }
+
+    public void setDateSoumission(LocalDateTime dateSoumission) {
+        this.dateSoumission = dateSoumission;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
+
+    public Contributeur getContributeur() {
+        return contributeur;
+    }
+
+    public void setContributeur(Contributeur contributeur) {
+        this.contributeur = contributeur;
+    }
+
+    public boolean isValidee() {
+        return validee;
+    }
+
+    public void setValidee(boolean validee) {
+        this.validee = validee;
+    }
 }
 
