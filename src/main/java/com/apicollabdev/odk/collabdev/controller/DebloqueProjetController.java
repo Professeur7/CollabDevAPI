@@ -47,5 +47,4 @@ public class DebloqueProjetController {
     ) {
         return ResponseEntity.ok(debloqueProjetService.updateDebloqueProjet(id, debloqueProjetDTO));
     }
-
 }

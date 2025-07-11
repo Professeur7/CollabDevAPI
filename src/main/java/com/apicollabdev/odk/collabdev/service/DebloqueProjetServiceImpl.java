@@ -5,28 +5,33 @@ import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.DebloqueProjet;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.DebloqueProjetRepository;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class DebloqueProjetServiceImpl implements DebloqueProjetService {
 
-    private DebloqueProjetRepository debloqueProjetRepository;
-    private ContributeurRepository contributeurRepository ;
+    private final DebloqueProjetRepository debloqueProjetRepository;
+    private final ContributeurRepository contributeurRepository;
 
+    public DebloqueProjetServiceImpl(DebloqueProjetRepository debloqueProjetRepository,
+                                     ContributeurRepository contributeurRepository) {
+        this.debloqueProjetRepository = debloqueProjetRepository;
+        this.contributeurRepository = contributeurRepository;
+    }
 
     @Override
-    public DebloqueProjet createDebloqueProjet(DebloqueProjetDTO debloqueProjet, Long idContributeur) {
-
+    public DebloqueProjet createDebloqueProjet(DebloqueProjetDTO debloqueProjetDTO, Long idContributeur) {
         Contributeur contributeur = contributeurRepository.findById(idContributeur)
-        .orElseThrow(()-> new RuntimeException("l'objet est introuvable"));
+                .orElseThrow(() -> new RuntimeException("Contributeur introuvable avec l'id : " + idContributeur));
 
-        DebloqueProjet debloqueProjet1 = new DebloqueProjet();
+        DebloqueProjet debloqueProjet = new DebloqueProjet();
+        debloqueProjet.setVisibilite(debloqueProjetDTO.isVisibilite());
+        debloqueProjet.setNombreCoins(debloqueProjetDTO.getNombreCoins());
+        debloqueProjet.setContributeur(contributeur);
 
-        debloqueProjet1.setVisibilite(debloqueProjet.isVisibilite());
-        debloqueProjet1.setNombreCoins(debloqueProjet.getNombreCoins());
-
-        debloqueProjet1.setContributeur(contributeur);
-
-        return debloqueProjetRepository.save(debloqueProjet1);
+        return debloqueProjetRepository.save(debloqueProjet);
     }
 
     @Override
@@ -50,11 +55,11 @@ public class DebloqueProjetServiceImpl implements DebloqueProjetService {
 
     @Override
     public DebloqueProjet updateDebloqueProjet(int id, DebloqueProjetDTO debloqueProjetDTO) {
-       //on recupere l'objet debloqueProjet dans la base a partir de son donnée
-        DebloqueProjet debloqueProjet = debloqueProjetRepository.findById(id).
-                orElseThrow(()-> new RuntimeException("l'objet est introvable"));
-        debloqueProjet.setVisibilite(debloqueProjet.isVisibilite());
-        debloqueProjet.setNombreCoins(debloqueProjet.getNombreCoins());
+        DebloqueProjet debloqueProjet = debloqueProjetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("DebloqueProjet introuvable avec l'id : " + id));
+
+        debloqueProjet.setVisibilite(debloqueProjetDTO.isVisibilite());
+        debloqueProjet.setNombreCoins(debloqueProjetDTO.getNombreCoins());
 
         return debloqueProjetRepository.save(debloqueProjet);
     }
