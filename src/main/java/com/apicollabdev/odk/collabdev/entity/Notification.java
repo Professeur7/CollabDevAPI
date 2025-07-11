@@ -1,6 +1,7 @@
 package com.apicollabdev.odk.collabdev.entity;
 
 
+import com.apicollabdev.odk.collabdev.enums.StatutDemande;
 import com.apicollabdev.odk.collabdev.enums.TypeNotification;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -21,9 +22,14 @@ public class Notification {
     private Long idNotification;
 
     @ManyToOne
-    @JoinColumn(name = "idAdministrateur",  nullable = true, referencedColumnName = "id")
+    @JoinColumn(name = "idAdministrateur",  nullable = true)
     @JsonBackReference
     private Administrateur administrateur;
+
+    @ManyToOne
+    @JoinColumn(name = "idContributeur",  nullable = true)
+    @JsonBackReference
+    private Contributeur contributeur;
 
     private String description;
 
@@ -31,6 +37,9 @@ public class Notification {
 
     @Enumerated(EnumType.STRING)
     private TypeNotification enumType;
+
+    @Enumerated(EnumType.STRING)
+    private StatutDemande statutDemande;
 
     private boolean etat;
 

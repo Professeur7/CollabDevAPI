@@ -8,6 +8,7 @@ import javax.net.ssl.SSLSession;
 
 @Entity
 @Data
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Demande {

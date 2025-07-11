@@ -2,43 +2,46 @@ package com.apicollabdev.odk.collabdev.entity;
 
 import com.apicollabdev.odk.collabdev.enums.Niveau;
 import com.apicollabdev.odk.collabdev.enums.Profil;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@Builder
 @Entity
-// Spécification explicite du nom de tabl
-@DiscriminatorValue("CONTRIBUTEUR")// e
-public class Contributeur extends Utilisateur {
+@PrimaryKeyJoinColumn(name = "id_contributeur")
+public class Contributeur extends Utilisateur{
 
 
     private String nom;
     private String prenom;
-    private int coins = 0;
-    @Column(nullable = false)
-    private String email;
-    @Column(nullable = false)
-    private String password;
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Profil profil;
+    private Profil profil; // DEVELOPPER, DESIGNER, etc
 
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
 
-    // Par défaut actif
 
-    // Relations
+//Relation
+
+    @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Notification> notification;
+
+
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IdeeProjet> ideeProjets;
 
+
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Coins> coinsH;
+    private List<Coins> coins;
 
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Badge> badges;
@@ -54,9 +57,6 @@ public class Contributeur extends Utilisateur {
 
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Recevoir> recevoirs;
+
 }
-/*
 
-
-
-*/
