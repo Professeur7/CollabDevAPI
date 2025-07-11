@@ -6,6 +6,7 @@ import com.apicollabdev.odk.collabdev.entity.Notification;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +14,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
+    @Autowired
     private NotificationRepository notificationRepository;
+    @Autowired
     private AdministrateurRepository administrateurRepository;
-    private Administrateur administrateur;
+
+
 
     @Override
-    public Notification createNotification(Notification notification,long idAdmin) {
-        Administrateur a = administrateurRepository.findById(idAdmin).orElseThrow(() -> new RuntimeException("Administrateur non trouv<UNK>"));
+    public Notification createNotification(Notification notification,long id_administrateur) {
+        Administrateur a = administrateurRepository.findById(id_administrateur).orElseThrow(() -> new RuntimeException("Administrateur non trouv<UNK>"));
         notification.setDateNotification(notification.getDateNotification());
         notification.setDescription(notification.getDescription());
         notification.setEnumType(notification.getEnumType());

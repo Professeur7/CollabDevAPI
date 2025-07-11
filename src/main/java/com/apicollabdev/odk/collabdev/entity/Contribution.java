@@ -29,7 +29,7 @@ public class Contribution {
     private Projet projet;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
     private Contributeur contributeur;
 
     public Long getIdContribution() {

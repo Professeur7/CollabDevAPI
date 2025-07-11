@@ -7,6 +7,7 @@ import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.ProjetRepository;
 import com.apicollabdev.odk.collabdev.service.CommentaireService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,14 @@ import java.util.List;
 @RequestMapping("/api/commentaires")
 @RequiredArgsConstructor
 public class CommentaireController {
-
+    @Autowired
     private final CommentaireService commentaireService;
+    @Autowired
     private final ContributeurRepository contributeurRepository;
+    @Autowired
     private final ProjetRepository projetRepository;
 
-    @PostMapping("/{idContributeur}")
+    @PostMapping("/creer/{idContributeur}")
     public ResponseEntity<Commentaire> create(@RequestBody Commentaire commentaire,@PathVariable("idContributeur") long idContributeur, @RequestParam("idProjet") long idProjet ) {
         Contributeur c = contributeurRepository.findById(idContributeur).orElseThrow(()-> new RuntimeException("Contributeur non trouvé"));
         Projet p = projetRepository.findById(idProjet).orElseThrow(()-> new RuntimeException("Projet non trouvé"));
@@ -36,7 +39,7 @@ public class CommentaireController {
         return commentaireService.getAllCommentaires(idContributeur);
     }
 
-    @GetMapping("/{idContributeur}")
+    @GetMapping("/parId/{idContributeur}")
     public ResponseEntity<Commentaire> getById(@RequestParam Long id, @PathVariable("idContributeur") long idContributeur) {
         Contributeur contributeur = contributeurRepository.findById(idContributeur).
                 orElseThrow(()->new RuntimeException("Contributeur n'existe pas"));

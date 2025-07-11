@@ -1,6 +1,7 @@
-package com.apicollabdev.odk.collabdev.Filter;
+/*package com.apicollabdev.odk.collabdev.Filter;
 
 import com.apicollabdev.odk.collabdev.config.JwtUtils;
+import com.apicollabdev.odk.collabdev.service.CustomerUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -64,3 +65,4 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+*/

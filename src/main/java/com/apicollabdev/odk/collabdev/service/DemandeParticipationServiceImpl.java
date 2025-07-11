@@ -2,10 +2,13 @@ package com.apicollabdev.odk.collabdev.service;
 
 import com.apicollabdev.odk.collabdev.entity.DemandeParticipation;
 import com.apicollabdev.odk.collabdev.repository.DemandeParticipationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class DemandeParticipationServiceImpl implements DemandeParticipationService {
+    @Autowired
     private DemandeParticipationRepository demandeParticipationRepository;
 
     @Override

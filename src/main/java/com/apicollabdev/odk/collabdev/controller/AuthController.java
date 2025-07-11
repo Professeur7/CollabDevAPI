@@ -1,4 +1,4 @@
-package com.apicollabdev.odk.collabdev.controller;
+/*package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.config.JwtUtils;
 import com.apicollabdev.odk.collabdev.dto.ContributeurDTO;
@@ -53,3 +53,4 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newContributeur);
     }
 }
+*/

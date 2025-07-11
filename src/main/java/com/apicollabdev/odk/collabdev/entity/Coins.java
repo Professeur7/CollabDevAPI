@@ -19,11 +19,11 @@ public class Coins {
     private int nombreCoins;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
     private Contributeur contributeur;
 
     @ManyToOne
-    @JoinColumn(name = "id_administrateur", nullable = true)
+    @JoinColumn(name = "id_administrateur", nullable = true, referencedColumnName = "id")
     @JsonBackReference
     private Administrateur administrateur;
 }

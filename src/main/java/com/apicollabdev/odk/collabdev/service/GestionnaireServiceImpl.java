@@ -4,16 +4,20 @@ import com.apicollabdev.odk.collabdev.dto.GestionnaireDTO;
 import com.apicollabdev.odk.collabdev.entity.*;
 import com.apicollabdev.odk.collabdev.enums.StatutDemande;
 import com.apicollabdev.odk.collabdev.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class GestionnaireServiceImpl implements GestionnaireService {
-
+    @Autowired
     private final GestionnaireRepository gestionnaireRepository;
+    @Autowired
     private final ContributionRepository contributionRepository;
+    @Autowired
     private final DemandeRepository demandeRepository;
+    @Autowired
     private final ContributeurRepository contributeurRepository;
 
     public GestionnaireServiceImpl(GestionnaireRepository gestionnaireRepository,

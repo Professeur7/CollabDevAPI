@@ -31,7 +31,7 @@ public class Demande {
     private Projet projet;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_contributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
     private Contributeur contributeur;
 
 

@@ -7,6 +7,7 @@ import com.apicollabdev.odk.collabdev.service.DemandeService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import static org.springframework.http.ResponseEntity.created;
 @RestController
 @RequestMapping("/api/demandes")
 public class DemandeController {
-
+    @Autowired
     private final DemandeService demandeService;
 
     @PostMapping("/{idcontributeur}/projets/{idprojet}")

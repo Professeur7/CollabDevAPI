@@ -3,6 +3,7 @@ package com.apicollabdev.odk.collabdev.controller;
 import com.apicollabdev.odk.collabdev.dto.GestionnaireDTO;
 import com.apicollabdev.odk.collabdev.entity.Gestionnaire;
 import com.apicollabdev.odk.collabdev.service.GestionnaireService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

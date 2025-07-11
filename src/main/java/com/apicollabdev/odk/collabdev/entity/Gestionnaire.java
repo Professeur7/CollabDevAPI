@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @DiscriminatorValue("GESTIONNAIRE")
-@PrimaryKeyJoinColumn(name = "id_gestionnaire")
+//@PrimaryKeyJoinColumn(name = "id")
 public class Gestionnaire extends Contributeur {
 
     private boolean validerContribution;

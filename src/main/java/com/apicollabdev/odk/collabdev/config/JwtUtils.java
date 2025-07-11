@@ -1,4 +1,4 @@
-package com.apicollabdev.odk.collabdev.config;
+/*package com.apicollabdev.odk.collabdev.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -16,6 +16,7 @@ import java.util.function.Function;
 /**
  * Utilitaire pour la génération, validation et extraction des tokens JWT
  */
+/*
 @Component
 public class JwtUtils {
 
@@ -76,3 +77,4 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
+*/

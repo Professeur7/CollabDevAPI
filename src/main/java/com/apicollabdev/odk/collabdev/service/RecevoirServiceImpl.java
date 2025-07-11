@@ -4,11 +4,13 @@ import com.apicollabdev.odk.collabdev.entity.Contribution;
 import com.apicollabdev.odk.collabdev.entity.Recevoir;
 import com.apicollabdev.odk.collabdev.repository.ContributionRepository;
 import com.apicollabdev.odk.collabdev.repository.RecevoirRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class RecevoirServiceImpl implements RecevoirService{
-
+    @Autowired
     private RecevoirRepository recevoirRepository;
 
     @Override

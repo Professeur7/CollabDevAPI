@@ -1,4 +1,4 @@
-package com.apicollabdev.odk.collabdev.service;
+/*package com.apicollabdev.odk.collabdev.service;
 
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
@@ -28,4 +28,4 @@ import java.util.Collections;
                     Collections.singletonList(new SimpleGrantedAuthority(contributeur.getProfil().name()))
             );
         }
-    }
+    */

@@ -16,7 +16,7 @@ public class IdeeProjet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_idee_projet")
-    private int idIdeeProjet;
+    private Long idIdeeProjet;
 
     private String description;
 
@@ -31,7 +31,7 @@ public class IdeeProjet {
     private Niveau niveau;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
     private Contributeur contributeur;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,11 +43,11 @@ public class IdeeProjet {
     @JoinColumn(name = "domaine_id", nullable = true)
     private Domaine domaine;
 
-    public int getIdIdeeProjet() {
+    public Long getIdIdeeProjet() {
         return idIdeeProjet;
     }
 
-    public void setIdIdeeProjet(int idIdeeProjet) {
+    public void setIdIdeeProjet(Long idIdeeProjet) {
         this.idIdeeProjet = idIdeeProjet;
     }
 
