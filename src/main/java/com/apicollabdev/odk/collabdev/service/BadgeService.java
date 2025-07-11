@@ -10,3 +10,4 @@ public interface BadgeService {
     Badge getById(Long id);
     void deleteById(Long id);
 }
+
