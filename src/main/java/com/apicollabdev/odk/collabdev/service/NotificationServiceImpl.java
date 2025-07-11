@@ -65,6 +65,6 @@ public class NotificationServiceImpl implements NotificationService {
         notificationRepository.save(notifications);
 
         // Envoi email
-        emailService.sendEmail(contributeurs.getEmail(), "Réponse à votre demande", notifications.getContenu());
+        emailService.sendEmail(contributeurs.getEmail(), "Réponse à votre demande", notifications.getDescription());
     }
 }
