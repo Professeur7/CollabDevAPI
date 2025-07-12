@@ -37,7 +37,7 @@ public class Administrateur extends Utilisateur{
     @JsonManagedReference
     private List<Notification> notification;
   
-    @OneToMany(mappedBy = "administrateur")
+    @OneToMany(mappedBy = "domaine")
     private List<Domaine> domaine;
 
     public String getEmail() {
@@ -80,11 +80,5 @@ public class Administrateur extends Utilisateur{
         this.badge = badge;
     }
 
-    public void setNom(String admin) {
-    }
-
-    public void setMotDePasse(String admin123) {
-
-    }
 }
 

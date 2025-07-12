@@ -21,7 +21,7 @@ public class Projet {
     private String titre;
     private String description;
 
-    private LocalDate date;
+    private LocalDate dateCreation;
 
     private boolean cahierDeCharge;
 
@@ -85,11 +85,11 @@ public class Projet {
     }
 
     public LocalDate getDate() {
-        return date;
+        return dateCreation;
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
+        this.dateCreation = date;
     }
 
     public boolean isCahierDeCharge() {

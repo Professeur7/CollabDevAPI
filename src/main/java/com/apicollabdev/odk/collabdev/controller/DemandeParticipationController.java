@@ -2,6 +2,7 @@ package com.apicollabdev.odk.collabdev.controller;
 import com.apicollabdev.odk.collabdev.entity.DemandeParticipation;
 import com.apicollabdev.odk.collabdev.service.DemandeParticipationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @RequestMapping("/api/demandeParticipation")
 @RequiredArgsConstructor
 public class DemandeParticipationController {
+    @Autowired
     private DemandeParticipationService demandeParticipationService;
 
     @PostMapping

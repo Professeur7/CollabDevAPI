@@ -11,8 +11,8 @@ public interface IdeeProjetService {
     IdeeProjet createIdeeProjet(IdeeProjet ideeProjet, Contributeur contributeur);
     List<IdeeProjet> getAllIdeeProjet();
 
-    IdeeProjet getById(int id);
-    IdeeProjet updateIdeeProjet(int id, IdeeProjet updatedIdeeProjet);
-    void deleteById(int id);
+    IdeeProjet getById(Long id);
+    IdeeProjet updateIdeeProjet(Long id, IdeeProjet updatedIdeeProjet);
+    void deleteById(Long id);
 
 }

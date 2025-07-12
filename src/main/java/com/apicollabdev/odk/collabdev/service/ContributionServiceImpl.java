@@ -1,6 +1,5 @@
 package com.apicollabdev.odk.collabdev.service;
 
-
 import com.apicollabdev.odk.collabdev.dto.ContributionDTO;
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.Contribution;
@@ -17,12 +16,18 @@ import java.util.List;
 
 @Service
 public class ContributionServiceImpl implements ContributionService {
+
+    @Autowired
     private ContributionRepository contributionRepository;
+    @Autowired
     private ContributeurRepository contributeurRepository;
+    @Autowired
     private ProjetRepository projetRepository;
 
     @Autowired
-    public ContributionServiceImpl(ContributionRepository contributionRepository, ContributeurRepository contributeurRepository, ProjetRepository projetRepository) {
+    public ContributionServiceImpl(ContributionRepository contributionRepository,
+                                   ContributeurRepository contributeurRepository,
+                                   ProjetRepository projetRepository) {
         this.contributionRepository = contributionRepository;
         this.contributeurRepository = contributeurRepository;
         this.projetRepository = projetRepository;
@@ -30,7 +35,6 @@ public class ContributionServiceImpl implements ContributionService {
 
     @Override
     public Contribution createContribution(ContributionDTO contributionDTO, long idProjet, long idContributeur) {
-        // Recupere le projet et le contributeur depuis la base doonées
         Contributeur c = contributeurRepository.findById(idContributeur)
                 .orElseThrow(() -> new RuntimeException("Contributeur introuvable"));
 
@@ -45,6 +49,7 @@ public class ContributionServiceImpl implements ContributionService {
         contribution.setProjet(p);
         contribution.setContributeur(c);
         contribution.setDateSoumission(LocalDateTime.now());
+
         contributionRepository.save(contribution);
         return contribution;
     }

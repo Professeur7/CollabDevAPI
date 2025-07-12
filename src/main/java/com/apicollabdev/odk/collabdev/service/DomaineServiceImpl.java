@@ -2,11 +2,13 @@ package com.apicollabdev.odk.collabdev.service;
 
 import com.apicollabdev.odk.collabdev.entity.Domaine;
 import com.apicollabdev.odk.collabdev.repository.DomaineRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class DomaineServiceImpl implements DomaineService {
-
+    @Autowired
     private DomaineRepository domaineRepository;
 
     @Override

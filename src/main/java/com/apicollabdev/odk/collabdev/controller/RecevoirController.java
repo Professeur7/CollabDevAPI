@@ -2,6 +2,7 @@ package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.entity.Recevoir;
 import com.apicollabdev.odk.collabdev.service.RecevoirService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api/recevoirs")
 @RestController
 public class RecevoirController {
-
+    @Autowired
     private RecevoirService recevoirService;
 
     @PostMapping

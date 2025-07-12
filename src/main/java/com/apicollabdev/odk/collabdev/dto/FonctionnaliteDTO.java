@@ -4,7 +4,7 @@ public class FonctionnaliteDTO {
     private int id;
     private String pointFonctionnalite;
     private String statut;
-    private int projetId;
+    private Long projetId;
     private String FonctionnaliteNom;
     private String FonctionnaliteDescription;
 
@@ -12,7 +12,7 @@ public class FonctionnaliteDTO {
     public FonctionnaliteDTO() {
     }
 
-    public FonctionnaliteDTO(int id, String pointFonctionnalite, String statut, int projetId, String FonctionnaliteNom, String FonctionnaliteDescription) {
+    public FonctionnaliteDTO(int id, String pointFonctionnalite, String statut, Long projetId, String FonctionnaliteNom, String FonctionnaliteDescription) {
         this.id = id;
         this.pointFonctionnalite = pointFonctionnalite;
         this.statut = statut;
@@ -45,11 +45,11 @@ public class FonctionnaliteDTO {
         this.statut = statut;
     }
 
-    public int getProjetId() {
+    public Long getProjetId() {
         return projetId;
     }
 
-    public void setProjetId(int projetId) {
+    public void setProjetId(Long projetId) {
         this.projetId = projetId;
     }
 

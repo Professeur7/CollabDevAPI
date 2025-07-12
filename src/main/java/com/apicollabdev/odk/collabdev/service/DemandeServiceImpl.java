@@ -14,9 +14,11 @@ import java.util.List;
 
 @Service
 public class DemandeServiceImpl implements DemandeService {
-
+    @Autowired
     private final DemandeRepository demandeRepository;
+    @Autowired
     private final ContributeurRepository contributeurRepository;
+    @Autowired
     private final ProjetRepository projetRepository;
 
     @Autowired

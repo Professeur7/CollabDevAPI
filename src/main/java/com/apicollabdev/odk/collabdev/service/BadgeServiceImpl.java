@@ -36,6 +36,7 @@ public class BadgeServiceImpl implements BadgeService {
 
     @Override
     public Badge getById(Long id) {
+
         return badgeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Badge non trouvé avec l'id : " + id));
     }

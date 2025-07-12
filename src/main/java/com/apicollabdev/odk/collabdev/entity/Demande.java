@@ -8,6 +8,7 @@ import javax.net.ssl.SSLSession;
 
 @Entity
 @Data
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Demande {
@@ -31,7 +32,7 @@ public class Demande {
     private Projet projet;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_contributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
     private Contributeur contributeur;
 
 

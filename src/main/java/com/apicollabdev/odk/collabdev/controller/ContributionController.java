@@ -4,6 +4,7 @@ import com.apicollabdev.odk.collabdev.dto.ContributionDTO;
 import com.apicollabdev.odk.collabdev.entity.Contribution;
 import com.apicollabdev.odk.collabdev.service.ContributionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/contributions")
 @RequiredArgsConstructor
 public class ContributionController {
-
+    @Autowired
     private final ContributionService contributionService;
 
     @PostMapping("/projet/{idprojet}/contributeur/{idcontributeur}")

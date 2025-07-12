@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProjetRepository extends JpaRepository<Projet, Long> {
-    Optional<Projet> findByIdProjet(Long id);
+    Optional<Projet> findById(int id);
 
     List<Projet> findByStatut(StatutProjet statut);
 }
