@@ -42,7 +42,7 @@ public class IdeeProjetController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         ideeProjetService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

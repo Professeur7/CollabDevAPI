@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ContributeurRepository extends JpaRepository<Contributeur, Long> {
     Optional<Contributeur> findByEmailAndPassword(String email, String password);
+    boolean existsByEmail(String email);
 }
 

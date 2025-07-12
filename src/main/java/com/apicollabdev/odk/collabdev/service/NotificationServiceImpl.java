@@ -2,17 +2,25 @@ package com.apicollabdev.odk.collabdev.service;
 
 
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
+import com.apicollabdev.odk.collabdev.entity.Demande;
 import com.apicollabdev.odk.collabdev.entity.Notification;
+import com.apicollabdev.odk.collabdev.enums.StatutDemande;
+import com.apicollabdev.odk.collabdev.enums.TypeNotification;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
+    @Autowired
+    private EmailService emailService;
     private NotificationRepository notificationRepository;
     private AdministrateurRepository administrateurRepository;
     private Administrateur administrateur;
@@ -42,5 +50,21 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void deleteById(Long id) {
         notificationRepository.deleteById(id);
+    }
+
+
+    public void notifierContributeurPourReponse(Demande demande, String statut) {
+        Contributeur contributeurs = demande.getContributeur();
+        StatutDemande statutDemande = statut.equalsIgnoreCase("ACCEPTEE") ? StatutDemande.ACCEPTEE : StatutDemande.REJETEE;
+
+        Notification notifications = new Notification();
+        notifications.setContributeur(contributeurs);
+        notifications.setDescription("Votre demande a été " + statutDemande);
+        notifications.setDateNotification(LocalDateTime.now());
+        notifications.setStatutDemande(statutDemande);
+        notificationRepository.save(notifications);
+
+        // Envoi email
+        emailService.sendEmail(contributeurs.getEmail(), "Réponse à votre demande", notifications.getDescription());
     }
 }

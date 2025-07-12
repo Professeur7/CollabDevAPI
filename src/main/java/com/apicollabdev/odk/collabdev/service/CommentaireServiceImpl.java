@@ -8,6 +8,7 @@ import com.apicollabdev.odk.collabdev.repository.CommentaireRepository;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.ProjetRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CommentaireServiceImpl implements CommentaireService {
-
+    @Autowired
     private CommentaireRepository commentaireRepository;
+    @Autowired
     private final ProjetRepository projetRepository;
+    @Autowired
     private final ContributeurRepository contributeurRepository;
 
     @Override

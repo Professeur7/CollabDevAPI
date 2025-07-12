@@ -25,8 +25,9 @@ public class Domaine {
     private List<IdeeProjet> ideeProjets;
 
     @ManyToOne
-    @JoinColumn(name = "id_administrateur", nullable = true)
+    @JoinColumn(name = "administrateur_id",nullable = true, referencedColumnName = "id" )
     private Administrateur administrateur;
+
 
 
 }
