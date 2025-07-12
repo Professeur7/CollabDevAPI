@@ -60,18 +60,5 @@ public class IdeeProjetServiceImpl implements IdeeProjetService {
         ideeProjetRepository.deleteById(id);
     }
 
-    // 🔄 Méthode update (optionnelle)
-    @Override
-    public IdeeProjet updateIdeeProjet(Long id, IdeeProjet updatedIdee) {
-        IdeeProjet existing = ideeProjetRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Impossible de modifier, idée projet introuvable avec l'id : " + id));
 
-        existing.setTitre(updatedIdee.getTitre());
-        existing.setDescription(updatedIdee.getDescription());
-        existing.setDate(updatedIdee.getDate());
-        existing.setStatut(updatedIdee.getStatut());
-        existing.setContributeur(updatedIdee.getContributeur());
-
-        return ideeProjetRepository.save(existing);
-    }
 }

@@ -36,7 +36,7 @@ public class CommentaireController {
         return commentaireService.getAllCommentaires(idContributeur);
     }
 
-    @GetMapping("/{idContributeur}")
+    @GetMapping("ParId/{idContributeur}")
     public ResponseEntity<Commentaire> getById(@RequestParam Long id, @PathVariable("idContributeur") long idContributeur) {
         Contributeur contributeur = contributeurRepository.findById(idContributeur).
                 orElseThrow(()->new RuntimeException("Contributeur n'existe pas"));

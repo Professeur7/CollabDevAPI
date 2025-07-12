@@ -35,7 +35,7 @@ public class FonctionnaliteServiceImpl implements FonctionnaliteService {
         f.setNomFonctionnalite(dto.getFonctionnaliteNom());
         f.setDescriptionFonctionnalite(dto.getFonctionnaliteDescription());
 
-        Projet projet = projetRepository.findById(dto.getProjetId())
+        Projet projet = projetRepository.findByIdProjet(Long.valueOf(dto.getProjetId()))
                 .orElseThrow(() -> new RuntimeException("Projet introuvable"));
 
         Fonctionnalite saved = fonctionnaliteRepository.save(f);

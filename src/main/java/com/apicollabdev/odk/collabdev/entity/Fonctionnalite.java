@@ -2,8 +2,9 @@ package com.apicollabdev.odk.collabdev.entity;
 
 import com.apicollabdev.odk.collabdev.enums.StatutProjet;
 import jakarta.persistence.*;
+import lombok.Data;
 
-
+@Data
 @Entity
 public class Fonctionnalite {
     @Id
@@ -19,12 +20,12 @@ public class Fonctionnalite {
 
     @ManyToOne
     @JoinColumn(name = "projet_id",
-            referencedColumnName = "id",
+            referencedColumnName = "id_projet",
             nullable = false)
     private Projet projet;
     @ManyToOne
     @JoinColumn(name = "gestionnaire_id",
-            referencedColumnName = "id",
+            referencedColumnName = "id_utilisateur",
             nullable = false)
     private Gestionnaire gestionnaires;
 
