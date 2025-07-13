@@ -17,11 +17,8 @@ import java.util.List;
 
 @Service
 public class ContributionServiceImpl implements ContributionService {
-    @Autowired
     private ContributionRepository contributionRepository;
-    @Autowired
     private ContributeurRepository contributeurRepository;
-    @Autowired
     private ProjetRepository projetRepository;
 
     @Autowired

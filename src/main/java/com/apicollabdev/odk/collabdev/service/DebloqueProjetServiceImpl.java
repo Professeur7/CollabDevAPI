@@ -1,18 +1,36 @@
 package com.apicollabdev.odk.collabdev.service;
 
+import com.apicollabdev.odk.collabdev.dto.DebloqueProjetDTO;
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.DebloqueProjet;
+import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.DebloqueProjetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class DebloqueProjetServiceImpl implements DebloqueProjetService {
-    @Autowired
-    private DebloqueProjetRepository debloqueProjetRepository;
+
+    private final DebloqueProjetRepository debloqueProjetRepository;
+    private final ContributeurRepository contributeurRepository;
+
+    public DebloqueProjetServiceImpl(DebloqueProjetRepository debloqueProjetRepository,
+                                     ContributeurRepository contributeurRepository) {
+        this.debloqueProjetRepository = debloqueProjetRepository;
+        this.contributeurRepository = contributeurRepository;
+    }
 
     @Override
-    public DebloqueProjet createDebloqueProjet(DebloqueProjet debloqueProjet) {
+    public DebloqueProjet createDebloqueProjet(DebloqueProjetDTO debloqueProjetDTO, Long idContributeur) {
+        Contributeur contributeur = contributeurRepository.findById(idContributeur)
+                .orElseThrow(() -> new RuntimeException("Contributeur introuvable avec l'id : " + idContributeur));
+
+        DebloqueProjet debloqueProjet = new DebloqueProjet();
+        debloqueProjet.setVisibilite(debloqueProjetDTO.isVisibilite());
+        debloqueProjet.setNombreCoins(debloqueProjetDTO.getNombreCoins());
+        debloqueProjet.setContributeur(contributeur);
+
         return debloqueProjetRepository.save(debloqueProjet);
     }
 
@@ -35,4 +53,14 @@ public class DebloqueProjetServiceImpl implements DebloqueProjetService {
         debloqueProjetRepository.deleteById(Math.toIntExact(id));
     }
 
+    @Override
+    public DebloqueProjet updateDebloqueProjet(int id, DebloqueProjetDTO debloqueProjetDTO) {
+        DebloqueProjet debloqueProjet = debloqueProjetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("DebloqueProjet introuvable avec l'id : " + id));
+
+        debloqueProjet.setVisibilite(debloqueProjetDTO.isVisibilite());
+        debloqueProjet.setNombreCoins(debloqueProjetDTO.getNombreCoins());
+
+        return debloqueProjetRepository.save(debloqueProjet);
+    }
 }
