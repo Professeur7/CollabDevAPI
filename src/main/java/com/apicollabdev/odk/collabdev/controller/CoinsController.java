@@ -2,7 +2,7 @@ package com.apicollabdev.odk.collabdev.controller;
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Coins;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
-import com.apicollabdev.odk.collabdev.service.CoinsService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.CoinsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

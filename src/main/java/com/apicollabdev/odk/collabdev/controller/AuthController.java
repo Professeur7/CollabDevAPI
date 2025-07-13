@@ -4,7 +4,7 @@ import com.apicollabdev.odk.collabdev.config.JwtUtils;
 import com.apicollabdev.odk.collabdev.dto.ContributeurDTO;
 import com.apicollabdev.odk.collabdev.dto.LoginRequest;
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
-import com.apicollabdev.odk.collabdev.service.ContributeurService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.ContributeurService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

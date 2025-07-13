@@ -2,8 +2,7 @@
 package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.dto.FonctionnaliteDTO;
-import com.apicollabdev.odk.collabdev.service.FonctionnaliteService;
-import com.apicollabdev.odk.collabdev.service.FonctionnaliteServiceImpl;
+import com.apicollabdev.odk.collabdev.service.Servicesimpl.FonctionnaliteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

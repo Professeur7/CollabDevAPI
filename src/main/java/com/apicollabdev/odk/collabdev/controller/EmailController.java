@@ -1,6 +1,6 @@
 package com.apicollabdev.odk.collabdev.controller;
 
-import com.apicollabdev.odk.collabdev.service.EmailService;
+import com.apicollabdev.odk.collabdev.service.Servicesimpl.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

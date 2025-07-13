@@ -15,7 +15,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@PrimaryKeyJoinColumn(name = "id")
+//@PrimaryKeyJoinColumn(name = "child_id")
+//@PrimaryKeyJoinColumn(name = "idAdmin")
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("ADMINISTRATEUR")
 public class Administrateur extends Utilisateur{
         private String email;

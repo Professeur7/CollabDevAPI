@@ -4,9 +4,8 @@ import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Badge;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.BadgeRepository;
-import com.apicollabdev.odk.collabdev.service.BadgeService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.BadgeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

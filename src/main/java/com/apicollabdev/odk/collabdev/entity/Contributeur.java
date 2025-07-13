@@ -12,7 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@PrimaryKeyJoinColumn(name = "id_contributeur")
+@DiscriminatorValue("CONTRIBUTEUR")
+@EqualsAndHashCode(callSuper = true)
+//@PrimaryKeyJoinColumn(name = "child_id")
+@PrimaryKeyJoinColumn(name = "idContributeur")
 public class Contributeur extends Utilisateur{
 
 
@@ -35,6 +38,9 @@ public class Contributeur extends Utilisateur{
     @JsonManagedReference
     private List<Notification> notification;
 
+    @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Contribution> contributions;
 
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IdeeProjet> ideeProjets;

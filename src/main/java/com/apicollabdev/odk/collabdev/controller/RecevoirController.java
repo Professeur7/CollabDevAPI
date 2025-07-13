@@ -1,7 +1,7 @@
 package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.entity.Recevoir;
-import com.apicollabdev.odk.collabdev.service.RecevoirService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.RecevoirService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

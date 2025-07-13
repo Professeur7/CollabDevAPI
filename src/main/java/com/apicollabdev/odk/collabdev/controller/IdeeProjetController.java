@@ -2,7 +2,7 @@ package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.IdeeProjet;
-import com.apicollabdev.odk.collabdev.service.IdeeProjetService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.IdeeProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

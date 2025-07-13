@@ -1,9 +1,7 @@
 package com.apicollabdev.odk.collabdev.controller;
 
-import com.apicollabdev.odk.collabdev.entity.Contribution;
 import com.apicollabdev.odk.collabdev.entity.Domaine;
-import com.apicollabdev.odk.collabdev.service.ContributionService;
-import com.apicollabdev.odk.collabdev.service.DomaineService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.DomaineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

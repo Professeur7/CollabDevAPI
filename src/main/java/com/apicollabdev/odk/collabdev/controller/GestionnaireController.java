@@ -2,8 +2,7 @@ package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.dto.GestionnaireDTO;
 import com.apicollabdev.odk.collabdev.entity.Gestionnaire;
-import com.apicollabdev.odk.collabdev.service.GestionnaireService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.apicollabdev.odk.collabdev.service.Interfaces.GestionnaireService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,12 +26,12 @@ public class GestionnaireController {
     }
 
     @GetMapping("/{id}")
-    public Gestionnaire getGestionnaireById(@PathVariable Long id) {
-        return gestionnaireService.getGestionnaireById(id);
+    public Gestionnaire getGestionnaireById(@PathVariable Long idGestionnaire) {
+        return gestionnaireService.getGestionnaireById(idGestionnaire);
     }
 
-    @PutMapping
+    /*@PutMapping
     public Gestionnaire updateGestionnaire(@RequestBody Gestionnaire gestionnaire) {
         return gestionnaireService.updateGestionnaire(gestionnaire);
-    }
+    }*/
 }

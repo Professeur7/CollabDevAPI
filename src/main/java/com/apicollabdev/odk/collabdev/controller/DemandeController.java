@@ -3,18 +3,13 @@ package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.dto.DemandeDTO;
 import com.apicollabdev.odk.collabdev.entity.Demande;
-import com.apicollabdev.odk.collabdev.service.DemandeService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.apicollabdev.odk.collabdev.service.Interfaces.DemandeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.http.ResponseEntity.created;
 
 @RequiredArgsConstructor
 @RestController

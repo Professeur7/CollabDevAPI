@@ -2,7 +2,7 @@ package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.dto.DebloqueProjetDTO;
 import com.apicollabdev.odk.collabdev.entity.DebloqueProjet;
-import com.apicollabdev.odk.collabdev.service.DebloqueProjetService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.DebloqueProjetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

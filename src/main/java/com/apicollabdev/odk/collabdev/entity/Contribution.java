@@ -1,6 +1,7 @@
 package com.apicollabdev.odk.collabdev.entity;
 
 
+import com.apicollabdev.odk.collabdev.enums.StatutContribution;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class Contribution {
     private boolean validee = false;
     private String type; // Exemple : "code", "design", "idée", etc.
 
+    private StatutContribution statut;
     private LocalDateTime dateSoumission;
 
     @ManyToOne
@@ -62,6 +64,14 @@ public class Contribution {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public StatutContribution getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutContribution statut) {
+        this.statut = statut;
     }
 
     public LocalDateTime getDateSoumission() {

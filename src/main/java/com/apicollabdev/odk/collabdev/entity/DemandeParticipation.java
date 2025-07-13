@@ -1,6 +1,6 @@
 package com.apicollabdev.odk.collabdev.entity;
 
-import com.apicollabdev.odk.collabdev.enums.StatutDemandeParticipation;
+import com.apicollabdev.odk.collabdev.enums.StatutDemande;
 import com.apicollabdev.odk.collabdev.enums.TypeDemandeParticipation;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,12 +20,12 @@ public class DemandeParticipation {
 
 
     @Enumerated(EnumType.STRING)
-    private StatutDemandeParticipation statutDemandeParticipation;
+    private StatutDemande statutDemande;
 
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private TypeDemandeParticipation typeDemandeParticipationemande;
+    private TypeDemandeParticipation typeDemandeParticipation;
 
     private LocalDateTime datedemande;
 

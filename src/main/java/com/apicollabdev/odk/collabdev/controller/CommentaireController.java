@@ -5,7 +5,7 @@ import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.Projet;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.ProjetRepository;
-import com.apicollabdev.odk.collabdev.service.CommentaireService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.CommentaireService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

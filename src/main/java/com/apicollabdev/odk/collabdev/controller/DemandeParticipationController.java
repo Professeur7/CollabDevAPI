@@ -1,6 +1,6 @@
 package com.apicollabdev.odk.collabdev.controller;
 import com.apicollabdev.odk.collabdev.entity.DemandeParticipation;
-import com.apicollabdev.odk.collabdev.service.DemandeParticipationService;
+import com.apicollabdev.odk.collabdev.service.Interfaces.DemandeParticipationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

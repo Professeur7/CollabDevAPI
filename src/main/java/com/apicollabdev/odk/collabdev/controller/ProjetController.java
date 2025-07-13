@@ -1,17 +1,14 @@
 package com.apicollabdev.odk.collabdev.controller;
 
 
-import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.Projet;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
-import com.apicollabdev.odk.collabdev.service.ProjetService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.apicollabdev.odk.collabdev.service.Interfaces.ProjetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController
