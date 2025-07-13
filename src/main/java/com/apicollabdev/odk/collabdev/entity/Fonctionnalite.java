@@ -20,7 +20,6 @@ public class Fonctionnalite {
 
     @ManyToOne
     @JoinColumn(name = "projet_id",
-            referencedColumnName = "id_projet",
             nullable = false)
     private Projet projet;
     @ManyToOne

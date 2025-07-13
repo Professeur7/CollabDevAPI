@@ -11,12 +11,11 @@ import java.util.List;
 @Service
 public class IdeeProjetServiceImpl implements IdeeProjetService {
 
-    private final IdeeProjetRepository ideeProjetRepository;
-
     @Autowired
-    public IdeeProjetServiceImpl(IdeeProjetRepository ideeProjetRepository) {
-        this.ideeProjetRepository = ideeProjetRepository;
-    }
+    private  IdeeProjetRepository ideeProjetRepository;
+
+
+
 
     @Override
     public IdeeProjet createIdeeProjet(IdeeProjet ideeProjet, Contributeur contributeur ) {
@@ -29,15 +28,14 @@ public class IdeeProjetServiceImpl implements IdeeProjetService {
     }
 
     @Override
-
-    public IdeeProjet getById(int id) {
+    public IdeeProjet getById(Long id) {
         return ideeProjetRepository.findById((id))
                 .orElseThrow(() -> new RuntimeException("IdeeProjet non trouvé avec l'id : " + id));
 
     }
 
     @Override
-    public IdeeProjet updateIdeeProjet(int id, IdeeProjet updatedIdeeProjet) {
+    public IdeeProjet updateIdeeProjet(Long id, IdeeProjet updatedIdeeProjet) {
         IdeeProjet existingIdeeProjet = ideeProjetRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("IdeeProjet non trouvée avec l'id : " + id));
 
@@ -52,7 +50,7 @@ public class IdeeProjetServiceImpl implements IdeeProjetService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         if (!ideeProjetRepository.existsById(id)) {
 
             throw new RuntimeException("Le IdeeProjet avec l'id " + id + " n'existe pas.");
@@ -60,18 +58,5 @@ public class IdeeProjetServiceImpl implements IdeeProjetService {
         ideeProjetRepository.deleteById(id);
     }
 
-    // 🔄 Méthode update (optionnelle)
-    @Override
-    public IdeeProjet updateIdeeProjet(Long id, IdeeProjet updatedIdee) {
-        IdeeProjet existing = ideeProjetRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Impossible de modifier, idée projet introuvable avec l'id : " + id));
 
-        existing.setTitre(updatedIdee.getTitre());
-        existing.setDescription(updatedIdee.getDescription());
-        existing.setDate(updatedIdee.getDate());
-        existing.setStatut(updatedIdee.getStatut());
-        existing.setContributeur(updatedIdee.getContributeur());
-
-        return ideeProjetRepository.save(existing);
-    }
 }

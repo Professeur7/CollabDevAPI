@@ -26,7 +26,7 @@ public class DebloqueProjet {
     private Projet projet;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "id_contributeur", nullable = false, referencedColumnName = "id_contributeur")
     private Contributeur contributeur;
 
 

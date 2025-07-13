@@ -12,7 +12,7 @@ public class FonctionnaliteMapper {
         dto.setPointFonctionnalite(String.valueOf(f.getPointFonctionnalite()));
         dto.setStatut(f.getStatutP().name());
          // suppose que Gestionnaire a getId()
-        dto.setProjetId(Math.toIntExact(f.getProjet().getIdProjet())); // suppose que Projet a getId()
+        dto.setProjetId((long) Math.toIntExact(f.getProjet().getIdProjet())); // suppose que Projet a getId()
         dto.setFonctionnaliteNom(f.getNomFonctionnalite());
         dto.setFonctionnaliteDescription(f.getDescriptionFonctionnalite());
         return dto;

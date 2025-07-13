@@ -12,12 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@PrimaryKeyJoinColumn(name = "id_contributeur")
+@PrimaryKeyJoinColumn(name = "id_contributeur")
 public class Contributeur extends Utilisateur{
 
 
     private String nom;
     private String prenom;
+    private boolean Active;
 
     @Enumerated(EnumType.STRING)
     private Profil profil; // DEVELOPPER, DESIGNER, etc

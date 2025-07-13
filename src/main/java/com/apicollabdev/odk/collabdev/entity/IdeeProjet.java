@@ -33,7 +33,7 @@ public class IdeeProjet {
     private Niveau niveau;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id_contributeur")
     private Contributeur contributeur;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

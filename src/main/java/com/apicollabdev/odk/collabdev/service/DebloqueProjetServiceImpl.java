@@ -15,6 +15,9 @@ public class DebloqueProjetServiceImpl implements DebloqueProjetService {
     @Autowired
     private DebloqueProjetRepository debloqueProjetRepository;
 
+    @Autowired
+    private ContributeurRepository contributeurRepository;
+
     @Override
     public DebloqueProjet createDebloqueProjet(DebloqueProjetDTO debloqueProjetDTO, Long idContributeur) {
         Contributeur contributeur = contributeurRepository.findById(idContributeur)

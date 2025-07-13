@@ -23,7 +23,7 @@ public class Commentaire {
     private boolean modifie;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id_contributeur")
     private Contributeur contributeur;
 
     @ManyToOne

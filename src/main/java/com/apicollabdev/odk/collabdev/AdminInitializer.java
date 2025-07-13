@@ -24,7 +24,7 @@ public class AdminInitializer implements CommandLineRunner {
             Administrateur admin = new Administrateur();
             admin.setNom("Admin");
             admin.setEmail("admin@example.com");
-            admin.setMotDePasse("admin123"); // mot de passe stocké en clair (à éviter en prod)
+            admin.setPassword("admin123"); // mot de passe stocké en clair (à éviter en prod)
 
             administrateurRepository.save(admin);
 
