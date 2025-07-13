@@ -36,9 +36,10 @@ public class Projet {
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
     private List<Contribution> contributions;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_idee_projet")
     private IdeeProjet ideeProjet;
+
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DemandeParticipation> demandeParticipation;

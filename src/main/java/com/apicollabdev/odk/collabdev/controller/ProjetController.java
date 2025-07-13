@@ -1,6 +1,7 @@
 package com.apicollabdev.odk.collabdev.controller;
 
 
+import com.apicollabdev.odk.collabdev.dto.CreateProjetRequest;
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.entity.Projet;
@@ -8,6 +9,7 @@ import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.service.ProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,14 +32,20 @@ public class ProjetController {
         this.contributeurRepository = contributeurRepository;
     }
 
+/*
     @PostMapping("/{id_contributeur}")
     public Projet create(@RequestBody Projet p,@PathVariable("id_contributeur") long id_contributeur) {
       Contributeur contributeur = contributeurRepository.findById(id_contributeur).
-                orElseThrow(()-> new RuntimeException("Le administrateur n'existe pas"));
+                orElseThrow(()-> new RuntimeException("Ce contributeur n'existe pas n'existe pas"));
 
 
         return projetService.createProjet(p,id_contributeur);
-    }
+    }*/
+@PostMapping("/create-from-idee")
+public ResponseEntity<Projet> createProjet(@RequestBody CreateProjetRequest request) {
+    Projet projetCree = projetService.createProjetFromIdee(request);
+    return ResponseEntity.status(HttpStatus.CREATED).body(projetCree);
+}
 
     @GetMapping("/{id_contributeur}")
     public Projet getById(@RequestParam Long id, @PathVariable Long id_contributeur) {

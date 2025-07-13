@@ -3,6 +3,7 @@ package com.apicollabdev.odk.collabdev.controller;
 // Importation des classes nécessaires
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,13 +11,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@AllArgsConstructor
 @RestController // Indique que cette classe est un contrôleur REST
 @RequestMapping("/admin") // Tous les endpoints ici auront le préfixe "/admin"
 public class AdministrateurController {
 
-     @Autowired // Injection du repository pour accéder aux administrateurs en base
-     private AdministrateurRepository administrateurRepository;
+      // Injection du repository pour accéder aux administrateurs en base
+     private final AdministrateurRepository administrateurRepository;
 
      // Instanciation d'un encodeur de mot de passe (utilisé ici pour la vérification uniquement)
      private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

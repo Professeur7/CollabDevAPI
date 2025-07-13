@@ -68,4 +68,22 @@ public  class ContributeurServiceImpl implements ContributeurService {
     public void deleteContributeur(Long id) {
         contributeurRepository.deleteById(id);
     }
+
+
+    @Override
+    @Transactional
+    public Contributeur mettreAJourContributeur(Long id, Contributeur dto) {
+        Contributeur existant = contributeurRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Contributeur non trouvé avec l'id: " + id));
+
+        existant.setNom(dto.getNom());
+        existant.setPrenom(dto.getPrenom());
+        existant.setEmail(dto.getEmail());
+        existant.setPassword(dto.getPassword());
+        existant.setNiveau(dto.getNiveau());
+        existant.setProfil(dto.getProfil());
+
+        return contributeurRepository.save(existant);
+    }
+
 }

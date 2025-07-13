@@ -16,6 +16,18 @@
     <licenses>
         <license/>
     </licenses>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <developers>
         <developer/>
     </developers>
@@ -39,6 +51,11 @@
         <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
 
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
@@ -58,17 +75,10 @@
         <scope>runtime</scope>
     </dependency>
 
-    <!--dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
-    </dependenc -->
-
     <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
     </dependency>
-
-
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-validation</artifactId>
@@ -83,8 +93,9 @@
     <dependency>
         <groupId>org.springdoc</groupId>
         <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-        <version>2.3.0</version>
+        <version>2.5.0</version> <!-- ✅ compatible avec Spring Boot 3.5.x -->
     </dependency>
+
 
     <!-- MySQL Connector -->
     <dependency>
@@ -92,6 +103,7 @@
         <artifactId>mysql-connector-j</artifactId>
         <scope>runtime</scope>
     </dependency>
+
 
     <!-- Lombok -->
     <dependency>

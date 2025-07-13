@@ -1,18 +1,28 @@
 package com.apicollabdev.odk.collabdev.service;
 
+import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Domaine;
+import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.DomaineRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+@RequiredArgsConstructor
 @Service
 public class DomaineServiceImpl implements DomaineService {
-    @Autowired
-    private DomaineRepository domaineRepository;
+        private final DomaineRepository domaineRepository;
+        private final AdministrateurRepository administrateurRepository;
+
 
     @Override
-    public Domaine createDomaine(Domaine domaine) {
+    public Domaine createDomaine(Domaine domaine, long idAdmin) {
+        Administrateur a = administrateurRepository.findById(idAdmin)
+                .orElseThrow(() -> new RuntimeException("Cet admin n'existe pas"));
+        domaine.setAdministrateur(a);
+        domaine.setDescription(domaine.getDescription());
+        domaine.setTitre(domaine.getTitre());
         return domaineRepository.save(domaine);
     }
 
@@ -34,4 +44,17 @@ public class DomaineServiceImpl implements DomaineService {
         }
         domaineRepository.deleteById((id));
     }
+
+    @Override
+    public Domaine updateDomaine(Long idDomaine, Domaine newDomaineData, Administrateur admin) {
+        Domaine domaine = domaineRepository.findById(idDomaine)
+                .orElseThrow(() -> new RuntimeException("Domaine introuvable"));
+
+        domaine.setTitre(newDomaineData.getTitre());
+        domaine.setDescription(newDomaineData.getDescription());
+        domaine.setAdministrateur(admin); // On confirme que c’est bien cet admin
+
+        return domaineRepository.save(domaine);
+    }
+
 }

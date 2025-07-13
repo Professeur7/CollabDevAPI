@@ -7,11 +7,16 @@ import com.apicollabdev.odk.collabdev.entity.Projet;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.DemandeRepository;
 import com.apicollabdev.odk.collabdev.repository.ProjetRepository;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Data
+@Getter
+@Setter
 @Service
 public class DemandeServiceImpl implements DemandeService {
     @Autowired
@@ -47,14 +52,6 @@ public class DemandeServiceImpl implements DemandeService {
     @Override
     public List<Demande> getAllDemandes() {
         return demandeRepository.findAll();
-    }
-
-    public DemandeRepository getDemandeRepository() {
-        return demandeRepository;
-    }
-
-    public ContributeurRepository getContributeurRepository() {
-        return contributeurRepository;
     }
 
     @Override

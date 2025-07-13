@@ -12,7 +12,6 @@ public interface ContributeurService {
     Contributeur getContributeurById(Long id);
     List<Contributeur> getAllContributeurs();
     void deleteContributeur(Long id);
-
-
+    Contributeur mettreAJourContributeur(Long id, Contributeur dto);
 }
 

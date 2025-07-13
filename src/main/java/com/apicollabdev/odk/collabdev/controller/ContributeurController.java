@@ -7,6 +7,7 @@ import com.apicollabdev.odk.collabdev.service.ContributeurService;
 import com.apicollabdev.odk.collabdev.service.ContributeurServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,4 +54,16 @@ public class ContributeurController {
     public void delete(@PathVariable Long id) {
         contributeurServiceimpl.deleteContributeur(id);
     }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Contributeur> mettreAJourContributeur(
+            @PathVariable Long id,
+            @RequestBody ContributeurDTO dto) {
+
+        Contributeur contributeur = ContributeurMapper.toEntity(dto);
+        Contributeur misAJour = contributeurServiceimpl.mettreAJourContributeur(id, contributeur);
+        return ResponseEntity.ok(misAJour);
+    }
+
 }

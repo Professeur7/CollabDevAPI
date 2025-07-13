@@ -6,15 +6,18 @@ import com.apicollabdev.odk.collabdev.entity.Coins;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.BadgeRepository;
 import com.apicollabdev.odk.collabdev.repository.CoinsRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
 import java.util.List;
-
+@AllArgsConstructor
+@Service
 public class AdministrateurServiceImpl implements AdministrateurService {
 
-    BadgeRepository badgeRepository;
-    CoinsRepository coinsRepository;
-    AdministrateurRepository administrateurRepository;
+    private final BadgeRepository badgeRepository;
+    private final CoinsRepository coinsRepository;
+    private final AdministrateurRepository administrateurRepository;
 
 
     //creation de badges
@@ -77,6 +80,7 @@ public class AdministrateurServiceImpl implements AdministrateurService {
     }
 
     //Mise a jours des coins
+
     public Coins updateCoins(int id,Coins coins, Administrateur administrateur) throws AccessDeniedException {
         if(administrateur == null) {
             throw new AccessDeniedException("Acces bloque pour les contributeurs");
@@ -94,4 +98,23 @@ public class AdministrateurServiceImpl implements AdministrateurService {
     }
 
 
+    @Override
+    public Administrateur administrateur(Administrateur administrateur) {
+        return null;
+    }
+
+    @Override
+    public List<Administrateur> getAllAdministrateurs() {
+        return List.of();
+    }
+
+    @Override
+    public Administrateur getById(Long idAdmin) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Long idAdmin) {
+
+    }
 }

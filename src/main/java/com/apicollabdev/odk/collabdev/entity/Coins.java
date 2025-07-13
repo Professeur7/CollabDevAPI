@@ -24,6 +24,6 @@ public class Coins {
 
     @ManyToOne
     @JoinColumn(name = "id_administrateur", nullable = true, referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = "admin-coin")
     private Administrateur administrateur;
 }

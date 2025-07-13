@@ -25,19 +25,20 @@ public class Administrateur extends Utilisateur{
     private ProfilAdmin profilAdmin; // DEVELOPPER, DESIGNER, etc
 
     @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference(value = "admin-coin")
     private List<Coins> coins;
 
     @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference(value = "admin-badge")
     private List<Badge> badge;
 
 
     @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference(value = "admin-notification")
     private List<Notification> notification;
 
     @OneToMany(mappedBy = "administrateur")
+    @JsonManagedReference(value = "admin-domaine")
     private List<Domaine> domaines;
 
 }

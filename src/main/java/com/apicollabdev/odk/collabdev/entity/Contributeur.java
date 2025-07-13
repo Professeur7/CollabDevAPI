@@ -32,11 +32,12 @@ public class Contributeur extends Utilisateur{
 //Relation
 
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference(value = "contributeur-notification")
     private List<Notification> notification;
 
 
     @OneToMany(mappedBy = "contributeur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference(value = "contributeur-idee_projet")
     private List<IdeeProjet> ideeProjets;
 
 
