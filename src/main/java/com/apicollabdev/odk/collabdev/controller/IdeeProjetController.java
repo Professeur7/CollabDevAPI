@@ -61,7 +61,7 @@ public class IdeeProjetController {
     //  Obtenir une idée par ID
     @GetMapping("/{id}")
     public ResponseEntity<IdeeProjet> getById(@PathVariable Long id) {
-        IdeeProjet idee = ideeProjetService.getById(id);
+        IdeeProjet idee = ideeProjetService.getById((long) Math.toIntExact(id));
         return ResponseEntity.ok(idee);
     }
 
@@ -73,7 +73,7 @@ public class IdeeProjetController {
     // Mettre à jour une idée
     @PutMapping("/{id}")
     public ResponseEntity<IdeeProjet> update(@PathVariable Long id, @RequestBody IdeeProjet updated) {
-        IdeeProjet ideeUpdated = ideeProjetService.updateIdeeProjet(id, updated);
+        IdeeProjet ideeUpdated = ideeProjetService.updateIdeeProjet((long) Math.toIntExact(id), updated);
         return ResponseEntity.ok(ideeUpdated);
     }
 

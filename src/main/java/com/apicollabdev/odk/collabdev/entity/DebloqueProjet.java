@@ -1,11 +1,10 @@
 package com.apicollabdev.odk.collabdev.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+
+@Data
 @Entity
 @Getter
 @Setter
@@ -27,7 +26,7 @@ public class DebloqueProjet {
     private Projet projet;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "id_contributeur", nullable = false, referencedColumnName = "id_contributeur")
     private Contributeur contributeur;
 
 

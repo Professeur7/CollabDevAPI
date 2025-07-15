@@ -5,88 +5,71 @@ import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+
 import java.util.Optional;
-import java.util.Scanner;
 
-@SpringBootApplication // Annotation principale qui indique une application Spring Boot
-
+@SpringBootApplication
 public class CollabdevApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CollabdevApplication.class, args); // Démarre l'application
+		SpringApplication.run(CollabdevApplication.class, args);
+
 	}
 }
 
-// Classe marquée comme composant Spring qui s'exécute automatiquement au démarrage
-@Component
+@Bean
+public PasswordEncoder passwordEncoder() {
+	return new BCryptPasswordEncoder();
+}
+
+// Classe qui s'exécute automatiquement au lancement de l'application
+@Component // Permet à Spring de gérer cette classe et d'injecter les dépendances
 class AdminInitializer implements CommandLineRunner {
 
-	@Autowired // Injection automatique du repository des administrateurs
+	@Autowired // Injection automatique du repository Admin
 	private AdministrateurRepository administrateurRepository;
 
-	// Déclaration d'un encodeur de mot de passe basé sur l'algorithme BCrypt
-	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	@Autowired // Injection automatique du password encoder
+	private PasswordEncoder passwordEncoder;
+
 
 	@Override
-	public void run(String... args) {
-		// Définition de l'email et du mot de passe de l'admin par défaut
-		String emailAdmin = "admincollabdev@gmail.com";
+	public void run(String... args) throws Exception {
+		// Définition des informations de l'admin par défaut
+		String emailAdmin = "admin1234@gmail.com";
 		String password = "admin1234";
 
-		// Recherche si un administrateur avec cet email existe déjà en base
+		// Recherche si un admin avec cet email existe déjà
 		Optional<Administrateur> adminOpt = administrateurRepository.findByEmail(emailAdmin);
 
-		// Si aucun admin trouvé, on le crée et on l'enregistre
+		// Si l'admin n'existe pas, on le crée
 		if (adminOpt.isEmpty()) {
 			Administrateur admin = new Administrateur();
-			admin.setEmail(emailAdmin);
-			admin.setPassword(passwordEncoder.encode(password)); // Mot de passe hashé
-			administrateurRepository.save(admin); // Sauvegarde en base
+			admin.setEmail(emailAdmin); // Correction : on utilise la variable et non un texte fixe
+			admin.setPassword(passwordEncoder.encode(password)); // On encode le mot de passe avant de le sauvegarder
 
-			// Affichage de confirmation dans la console
-			System.out.println("Admin par défaut créé avec succès !");
-			System.out.println("Identifiants :");
-			System.out.println("✉ Email : " + emailAdmin);
-			System.out.println("🔒 Mot de passe : " + password);
+			administrateurRepository.save(admin); // Sauvegarde de l'admin dans la base de données
+			System.out.println("L'Admin par défaut créé avec succès.");
 		} else {
-			// Si un admin existe déjà, on affiche un message et on lance une pseudo-connexion
-			System.out.println(" Un administrateur existe déjà.");
-			System.out.println("Veuillez vous connecter avec vos identifiants.");
-			connexionAdmin(adminOpt.get());
-		}
-	}
+			// Si l'admin existe déjà
+			System.out.println("Admin existe déjà.");
+			System.out.println("Veillez vous connecter !");
 
-	// Méthode simulant une tentative de connexion en console
-	private void connexionAdmin(Administrateur admin) {
-		Scanner scanner = new Scanner(System.in);
-
-		// Lecture de l'email saisi par l'utilisateur
-		System.out.print("Entrez votre email : ");
-		String emailInput = scanner.nextLine();
-
-		// Lecture du mot de passe saisi
-		System.out.print("Entrez votre mot de passe : ");
-		String passwordInput = scanner.nextLine();
-
-		// Vérification de l'email
-		if (!emailInput.equals(admin.getEmail())) {
-			System.out.println(" Email incorrect !");
-			return;
-		}
-
-		// Vérification du mot de passe via BCrypt
-		if (passwordEncoder.matches(passwordInput, admin.getPassword())) {
-			System.out.println(" Connexion réussie !");
-			System.out.println("BIENVENU ! " + admin.getEmail());
-		} else {
-			System.out.println("Mot de passe ou email incorrect !");
+			// Vérification du mot de passe : si le mot de passe par défaut correspond au mot de passe en base lors de la connexion
+			Administrateur adminExist = adminOpt.get();
+			if (passwordEncoder.matches(password, adminExist.getPassword())) {
+				System.out.println("Admin connecté avec succès !");
+				System.out.println("Vous êtes connecter avec l'email :" + adminExist.getEmail());
+			} else {
+				System.out.println("Mot de passe ou Email incorrect, veillez vérifier puis réessayer !");
+			}
 		}
 	}
 }
+

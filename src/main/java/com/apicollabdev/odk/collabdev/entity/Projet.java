@@ -3,10 +3,13 @@ package com.apicollabdev.odk.collabdev.entity;
 
 import com.apicollabdev.odk.collabdev.enums.StatutProjet;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
+
+@Data
 @Entity
 public class Projet {
 
@@ -55,7 +58,7 @@ public class Projet {
     private Domaine domaine;
 
     @ManyToOne
-    @JoinColumn(name = "id_gestionnaire", nullable = true)
+    @JoinColumn(name = "id_gestionnaire", referencedColumnName = "id_utilisateur")
     private Gestionnaire gestionnaire;
 
     public Long getIdProjet() {

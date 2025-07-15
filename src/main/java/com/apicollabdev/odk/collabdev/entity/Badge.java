@@ -27,8 +27,8 @@ public class Badge {
     private Contributeur contributeur;
 
     @ManyToOne
-    @JoinColumn(name = "id_administrateur", nullable = true, referencedColumnName = "id")
-    @JsonBackReference(value = "admin-badge")
+    @JoinColumn(name = "id_administrateur", nullable = true, referencedColumnName = "id_administrateur")
+    @JsonBackReference
     private Administrateur administrateur;
 
     public Long getIdBadge() {

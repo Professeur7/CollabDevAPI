@@ -3,12 +3,13 @@ package com.apicollabdev.odk.collabdev.entity;
 import com.apicollabdev.odk.collabdev.enums.Niveau;
 import com.apicollabdev.odk.collabdev.enums.StatutIdee;
 import com.apicollabdev.odk.collabdev.enums.StatutProjet;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
+
+@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,8 +26,6 @@ public class IdeeProjet {
 
     private LocalDate dateCreation;
 
-    private boolean transformeEnProjet = false;
-
     @Enumerated(EnumType.STRING)
     private StatutIdee statut;
 
@@ -34,18 +33,13 @@ public class IdeeProjet {
     private Niveau niveau;
 
     @ManyToOne
-    @JoinColumn(name = "id_gestionnaire", nullable = true)
-    private Gestionnaire gestionnaire;
-
-    @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id")
-    @JsonBackReference(value = "contributeur-idee_projet")
+    @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id_contributeur")
     private Contributeur contributeur;
 
-
-
-    @OneToOne(mappedBy = "ideeProjet")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_projet")
     private Projet projet;
+
 
     @ManyToOne
     @JoinColumn(name = "domaine_id", nullable = true)

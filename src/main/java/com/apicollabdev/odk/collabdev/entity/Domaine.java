@@ -2,7 +2,6 @@ package com.apicollabdev.odk.collabdev.entity;
 
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Domaine {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_domaine")
@@ -25,8 +25,7 @@ public class Domaine {
     private List<IdeeProjet> ideeProjets;
 
     @ManyToOne
-    @JoinColumn(name = "administrateur_id",nullable = true, referencedColumnName = "id" )
-    @JsonBackReference(value = "admin-domaine")
+    @JoinColumn(name = "administrateur_id",nullable = true, referencedColumnName = "id_administrateur" )
     private Administrateur administrateur;
 
 
