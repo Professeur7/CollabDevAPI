@@ -2,8 +2,10 @@ package com.apicollabdev.odk.collabdev.controller;
 
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Badge;
+import com.apicollabdev.odk.collabdev.entity.Contributeur;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
 import com.apicollabdev.odk.collabdev.repository.BadgeRepository;
+import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.service.BadgeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,20 @@ public class BadgeController {
     private  final BadgeService badgeService;
     private final BadgeRepository badgeRepository;
     private final AdministrateurRepository administrateurRepository;
-
+    @Autowired
+    private ContributeurRepository contributeurRepository;
     @PostMapping("/administrateur/{idadmin}")
     public ResponseEntity<Badge> create(@RequestBody Badge badge,@PathVariable("idadmin") long idAmin ) {
         Administrateur a = administrateurRepository.findById(idAmin)
                 .orElseThrow( ()-> new RuntimeException("Administrateur non trouvé"));
         return ResponseEntity.ok(badgeService.createBadge(badge, idAmin));
+    }
+
+    @GetMapping("/contributeur/{id}")
+    public ResponseEntity<List<Badge>> getBadgesByContributeur(@PathVariable Long id) {
+        Contributeur contributeur = contributeurRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Contributeur non trouvé"));
+        return ResponseEntity.ok(contributeur.getBadges());
     }
 
     @GetMapping

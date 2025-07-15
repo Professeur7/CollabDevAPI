@@ -14,6 +14,9 @@ public interface BadgeRepository extends JpaRepository<Badge, Long> {
     List<Badge> findByContributeur(Contributeur contributeur);
     Optional<Badge> deleteBadgeByIdBadge(int idBadge);
 
+    Optional<Badge> findByNom(String nom);
+
+
 
 }
 
