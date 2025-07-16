@@ -1,5 +1,6 @@
 package com.apicollabdev.odk.collabdev.controller;
 
+import com.apicollabdev.odk.collabdev.dto.BadgeDTO;
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Badge;
 import com.apicollabdev.odk.collabdev.entity.Contributeur;
@@ -9,6 +10,7 @@ import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.service.BadgeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +27,15 @@ public class BadgeController {
     private final AdministrateurRepository administrateurRepository;
     @Autowired
     private ContributeurRepository contributeurRepository;
-    @PostMapping("/administrateur/{idadmin}")
-    public ResponseEntity<Badge> create(@RequestBody Badge badge,@PathVariable("idadmin") long idAmin ) {
+    @PostMapping(
+            value = "/administrateur/{idadmin}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Badge> create(@RequestBody BadgeDTO dto, @PathVariable("idadmin") long idAmin ) {
         Administrateur a = administrateurRepository.findById(idAmin)
                 .orElseThrow( ()-> new RuntimeException("Administrateur non trouvé"));
-        return ResponseEntity.ok(badgeService.createBadge(badge, idAmin));
+        return ResponseEntity.ok(badgeService.createBadge(dto, idAmin));
     }
 
     @GetMapping("/contributeur/{id}")

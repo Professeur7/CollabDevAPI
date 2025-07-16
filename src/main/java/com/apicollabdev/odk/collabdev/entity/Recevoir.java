@@ -14,12 +14,16 @@ public class Recevoir {
 
     private LocalDateTime dateRecevoir;
 
+    private boolean lu;
 
     @ManyToOne
-    @JoinColumn(name = "id_notification", nullable = true)
+    @JoinColumn(name = "id_notification", nullable = false)
     private Notification notification;
 
     @ManyToOne
-    @JoinColumn(name = "id_contributeur", nullable = true)
+    @JoinColumn(name = "id_contributeur", nullable = false)
     private Contributeur contributeur;
+
+    public void setContributeur(Contributeur gestionnaireContributeur) {
+    }
 }

@@ -12,5 +12,6 @@ import java.util.List;
 @Repository
 public interface DemandeRepository extends JpaRepository<Demande, Long> {
     List<Demande> findByStatut(StatutDemande statut);
+
 }
 

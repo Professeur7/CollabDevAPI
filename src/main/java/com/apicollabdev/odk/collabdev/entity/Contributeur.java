@@ -20,6 +20,7 @@ public class Contributeur extends Utilisateur{
     private String prenom;
     private boolean Active;
 
+
     @Enumerated(EnumType.STRING)
     private Profil profil; // DEVELOPPER, DESIGNER, etc
 

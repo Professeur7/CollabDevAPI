@@ -3,7 +3,9 @@ package com.apicollabdev.odk.collabdev.controller;
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Notification;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
+import com.apicollabdev.odk.collabdev.repository.NotificationRepository;
 import com.apicollabdev.odk.collabdev.service.NotificationService;
+import com.apicollabdev.odk.collabdev.service.NotificationServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,24 @@ public class NotificationController {
     @Autowired
     private final NotificationService notificationService;
     @Autowired
+    private NotificationServiceImpl notificationServiceImpl;
+    @Autowired
     private final AdministrateurRepository administrateurRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
+
+    /*@GetMapping("/gestionnaire/{idGestionnaire}")
+    public ResponseEntity<List<Notification>> getNotificationsByGestionnaire(@PathVariable Long idGestionnaire) {
+        List<Notification> notifications = notificationServiceImpl.getNotificationsByGestionnaire(idGestionnaire);
+        return ResponseEntity.ok(notifications);
+    }
+
+    @GetMapping("/projet/{idProjet}")
+    public ResponseEntity<List<Notification>> getNotificationsByProjet(@PathVariable Long idProjet) {
+        return ResponseEntity.ok(notificationRepository.findByProjet_IdProjet(idProjet));
+    }*/
+
+
 
     @PostMapping("/administrateurs/{idadmin}")
     public ResponseEntity<Notification> create(@RequestBody Notification notification,@PathVariable("idadmin") long idAdministrateur) {

@@ -1,16 +1,17 @@
 package com.apicollabdev.odk.collabdev.controller;
 
-import com.apicollabdev.odk.collabdev.entity.Administrateur;
-import com.apicollabdev.odk.collabdev.entity.Contributeur;
-import com.apicollabdev.odk.collabdev.entity.Domaine;
-import com.apicollabdev.odk.collabdev.entity.IdeeProjet;
+import com.apicollabdev.odk.collabdev.dto.CreateIdeeProjetDTO;
+import com.apicollabdev.odk.collabdev.entity.*;
 import com.apicollabdev.odk.collabdev.repository.ContributeurRepository;
 import com.apicollabdev.odk.collabdev.repository.DomaineRepository;
 import com.apicollabdev.odk.collabdev.service.ContributeurService;
 import com.apicollabdev.odk.collabdev.service.DomaineService;
 import com.apicollabdev.odk.collabdev.service.IdeeProjetService;
+import com.apicollabdev.odk.collabdev.service.IdeeProjetServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,9 @@ public class IdeeProjetController {
      @Autowired
      private DomaineService domaineService;
 
+     @Autowired
+     private IdeeProjetServiceImpl ideeProjetServiceImpl;
+
 
      private Domaine domaine;
      //  Constructeur pour injecter le service
@@ -41,15 +45,24 @@ public class IdeeProjetController {
     }
 
     // Créer une idée de projet
-    @Transactional
+
     @PostMapping("/contributeur/{idContributeur}/domaine/{idDomaine}")
-    public ResponseEntity<IdeeProjet> create(@RequestBody IdeeProjet ideeProjet,@PathVariable("idContributeur") long idContributeur, @PathVariable("idDomaine") long idDomaine) {
-        Contributeur c = contributeurRepository.findById(idContributeur)
-                .orElseThrow( ()-> new RuntimeException("Contributeur non trouvé"));
-        Domaine d = domaineRepository.findById(idDomaine)
-                .orElseThrow( ()-> new RuntimeException("Domaine non trouvé"));
-        return ResponseEntity.ok(ideeProjetService.createIdeeProjet(ideeProjet, idContributeur, idDomaine));
+    public ResponseEntity<IdeeProjet> createIdeeProjet(
+            @RequestBody CreateIdeeProjetDTO dto,
+            @PathVariable Long idContributeur,
+            @PathVariable Long idDomaine
+    ) {
+        IdeeProjet created = ideeProjetServiceImpl.createIdeeProjet(dto, idContributeur, idDomaine);
+        return ResponseEntity.ok(created);
     }
+
+
+    @PostMapping("/transformer-en-projet/{idIdee}")
+    public ResponseEntity<Projet> transformerEnProjet(@PathVariable Long idIdee) {
+        Projet projet = ideeProjetServiceImpl.transformerIdeeEnProjet(idIdee);
+        return ResponseEntity.ok(projet);
+    }
+
 
     // Obtenir toutes les idées
     @GetMapping

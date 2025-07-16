@@ -28,6 +28,7 @@ public class CommentaireController {
         return ResponseEntity.ok(commentaireService.createCommentaire(commentaire, idContributeur, idProjet));
     }
 
+
     @GetMapping("{idContributeur}")
     public List<Commentaire> getAll(@PathVariable("idContributeur") long idContributeur) {
         Contributeur contributeur = contributeurRepository.findById(idContributeur).

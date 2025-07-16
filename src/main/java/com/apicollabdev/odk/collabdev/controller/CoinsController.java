@@ -1,4 +1,5 @@
 package com.apicollabdev.odk.collabdev.controller;
+import com.apicollabdev.odk.collabdev.dto.CoinsDTO;
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Coins;
 import com.apicollabdev.odk.collabdev.repository.AdministrateurRepository;
@@ -6,6 +7,7 @@ import com.apicollabdev.odk.collabdev.service.CoinsService;
 import com.apicollabdev.odk.collabdev.service.CoinsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +22,18 @@ public class CoinsController {
     @Autowired
     private CoinsServiceImpl coinsServiceImpl;
 
-    @PostMapping("/administrateur/{idadmin}")
-    public ResponseEntity<Coins> create(@RequestBody Coins coins, @PathVariable("idadmin") long idAmin ) {
-        Administrateur a = administrateurRepository.findById(idAmin)
-                .orElseThrow( ()-> new RuntimeException("Administrateur non trouvé"));
-        return ResponseEntity.ok(coinsService.createCoins(coins, idAmin));
+    @PostMapping(
+            value = "/administrateur/{idAdmin}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Coins> create(
+            @RequestBody CoinsDTO dto,
+            @PathVariable("idAdmin") long idAdmin
+    ) {
+        return ResponseEntity.ok(coinsService.createCoins(dto, idAdmin));
     }
+
 
     @GetMapping
     public List<Coins> getAll() {
@@ -45,11 +53,11 @@ public class CoinsController {
 
     @PostMapping("/administrateur/{idadmin}/contributeur/{idcontrib}")
     public ResponseEntity<Coins> createCoinForContributeur(
-            @RequestBody Coins coins,
+            @RequestBody CoinsDTO dto,
             @PathVariable("idadmin") long idAdmin,
             @PathVariable("idcontrib") long idContrib) {
 
-        Coins result = coinsServiceImpl.createCoinsForContributeur(coins, idAdmin, idContrib);
+        Coins result = coinsServiceImpl.createCoinsForContributeur(dto, idAdmin, idContrib);
         return ResponseEntity.ok(result);
     }
 }

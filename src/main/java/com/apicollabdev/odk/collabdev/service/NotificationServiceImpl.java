@@ -21,6 +21,7 @@ import java.util.List;
 public class NotificationServiceImpl implements NotificationService {
     @Autowired
     private EmailService emailService;
+    @Autowired
     private NotificationRepository notificationRepository;
     private AdministrateurRepository administrateurRepository;
     private Administrateur administrateur;
@@ -67,4 +68,10 @@ public class NotificationServiceImpl implements NotificationService {
         // Envoi email
         emailService.sendEmail(contributeurs.getEmail(), "Réponse à votre demande", notifications.getDescription());
     }
+
+  /*  public List<Notification> getNotificationsByGestionnaire(Long idGestionnaire) {
+        return notificationRepository.findByProjet_Gestionnaire_IdContributeur(idGestionnaire);
+    }*/
+
+
 }

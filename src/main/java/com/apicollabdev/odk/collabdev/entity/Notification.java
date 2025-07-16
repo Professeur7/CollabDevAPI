@@ -43,6 +43,12 @@ public class Notification {
 
     private boolean etat;
 
+
+    @ManyToOne
+    @JoinColumn(name = "id_projet")
+    private Projet projet;
+
+
     @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Recevoir> recevoirs;
 

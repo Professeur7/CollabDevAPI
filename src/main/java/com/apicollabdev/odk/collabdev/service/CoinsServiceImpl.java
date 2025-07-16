@@ -1,5 +1,6 @@
 package com.apicollabdev.odk.collabdev.service;
 
+import com.apicollabdev.odk.collabdev.dto.CoinsDTO;
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Badge;
 import com.apicollabdev.odk.collabdev.entity.Coins;
@@ -31,23 +32,26 @@ public class CoinsServiceImpl implements CoinsService {
 
 
     @Override
-    public Coins createCoins(Coins coins, long idAdmin) {
-        Administrateur a = administrateurRepository.findById(idAdmin)
+    public Coins createCoins(CoinsDTO dto, long idAdmin) {
+        Administrateur admin = administrateurRepository.findById(idAdmin)
                 .orElseThrow(() -> new RuntimeException("Administrateur non trouvé"));
 
-        // Ajout automatique de 1 coin supplémentaire
-        coins.setNombreCoins(coins.getNombreCoins() + 1);
-        coins.setAdministrateur(a);
+        Coins coins = new Coins();
+        coins.setNombreCoins(dto.getNombreCoins() + 1); // ajoute +1 automatiquement
+        coins.setAdministrateur(admin);
 
-        // Sauvegarde des coins
+        // Tu devras lier un contributeur si nécessaire ici (manuellement ou dans le DTO)
+
         Coins saved = coinsRepository.save(coins);
 
-        // Attribution automatique de badge
-        Contributeur contributeur = saved.getContributeur();
-        badgeServiceImpl.checkAndAssignBadgeIfEligible(contributeur);
+        // Si tu as un contributeur lié, fais :
+        if (saved.getContributeur() != null) {
+            badgeServiceImpl.checkAndAssignBadgeIfEligible(saved.getContributeur());
+        }
 
         return saved;
     }
+
 
     @Override
     public List<Coins> getAllCoins() {
@@ -72,7 +76,7 @@ public class CoinsServiceImpl implements CoinsService {
     @Autowired
     private BadgeService badgeService;
 
-    public Coins createCoinsForContributeur(Coins coins, long idAdmin, long idContrib) {
+    public Coins createCoinsForContributeur(CoinsDTO dto, long idAdmin, long idContrib) {
         Administrateur admin = administrateurRepository.findById(idAdmin)
                 .orElseThrow(() -> new RuntimeException("Administrateur non trouvé"));
         Contributeur contrib = contributeurRepository.findById(idContrib)
@@ -85,13 +89,13 @@ public class CoinsServiceImpl implements CoinsService {
         if (existingCoins.isEmpty()) {
             // Aucun coins existant : on crée un nouveau
             coin = new Coins();
-            coin.setNombreCoins(coins.getNombreCoins()); // initialisé avec la valeur reçue
+            coin.setNombreCoins(dto.getNombreCoins()); // initialisé avec la valeur reçue
             coin.setAdministrateur(admin);
             coin.setContributeur(contrib);
         } else {
             // Coins déjà existants → on met à jour le premier
             coin = existingCoins.get(0);
-            coin.setNombreCoins(coin.getNombreCoins() + coins.getNombreCoins());
+            coin.setNombreCoins(coin.getNombreCoins() + dto.getNombreCoins());
         }
 
         Coins savedCoin = coinsRepository.save(coin);
@@ -106,9 +110,6 @@ public class CoinsServiceImpl implements CoinsService {
 
         return savedCoin;
     }
-
-
-
 
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface DemandeService {
     Demande createDemande(DemandeDTO demandeDTO, long idContributeur, long idProjet);
+    Demande creerDemande(long idProjet, long idContributeur, String description);
     List<Demande> getAllDemandes();
     Demande getById(Long id);
     void deleteById(Long id);

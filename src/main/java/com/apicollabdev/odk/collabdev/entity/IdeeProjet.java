@@ -32,6 +32,8 @@ public class IdeeProjet {
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
 
+    private boolean Leguer;
+
     @ManyToOne
     @JoinColumn(name = "id_contributeur", nullable = true, referencedColumnName = "id_contributeur")
     private Contributeur contributeur;

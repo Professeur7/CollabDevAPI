@@ -1,5 +1,6 @@
 package com.apicollabdev.odk.collabdev.service;
 
+import com.apicollabdev.odk.collabdev.dto.BadgeDTO;
 import com.apicollabdev.odk.collabdev.entity.Administrateur;
 import com.apicollabdev.odk.collabdev.entity.Badge;
 import com.apicollabdev.odk.collabdev.entity.Coins;
@@ -17,7 +18,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BadgeServiceImpl implements BadgeService {
 
-    private final BadgeRepository badgeRepository;
+    @Autowired
+    private  BadgeRepository badgeRepository;
     private final AdministrateurRepository administrateurRepository;
 
     @Autowired
@@ -25,14 +27,16 @@ public class BadgeServiceImpl implements BadgeService {
 
 
     @Override
-    public Badge createBadge(Badge badge, long idAdmin) {
+    public Badge createBadge(BadgeDTO dto, long idAdmin) {
         Administrateur a = administrateurRepository.findById(idAdmin)
                         .orElseThrow(() -> new RuntimeException("Cet admin n'existe pas"));
-        badge.setNom(badge.getNom());
-        badge.setDescription(badge.getDescription());
+
+        Badge badge = new Badge();
+        badge.setNom(dto.getNom());
+        badge.setDescription(dto.getDescription());
         badge.setAdministrateur(a);
-        badge.setNombre(badge.getNombre());
-        badge.setImage(badge.getImage());
+        badge.setNombre(dto.getNombre());
+        badge.setImage(dto.getImage());
         return badgeRepository.save(badge);
     }
 
