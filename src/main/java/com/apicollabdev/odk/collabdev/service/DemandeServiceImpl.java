@@ -39,27 +39,29 @@ public class DemandeServiceImpl implements DemandeService {
 
     @Override
     public Demande createDemande(DemandeDTO demandeDTO, long idContributeur, long idProjet) {
-         Contributeur c = contributeurRepository.findById(idContributeur)
+         Contributeur contributeur = contributeurRepository.findById(idContributeur)
                  .orElseThrow(() -> new RuntimeException("Contributeur Introuvable"));
-            Projet p = projetRepository.findById(idProjet)
+            Projet projet = projetRepository.findById(idProjet)
                     .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
             Demande demande = new Demande();
             demande.setStatut(demandeDTO.getStatut());
             demande.setDescription(demandeDTO.getDescription());
             demande.setChoixRole(demandeDTO.getChoixRole());
-            demande.setContributeur(c);
-            demande.setProjet(p);
-         demandeRepository.save(demande);
+            demande.setContributeur(contributeur);
+            demande.setProjet(projet);
+            demandeRepository.save(demande);
 
         Notification notification = new Notification();
-        notification.setProjet(p); // ✅ tu dois utiliser "projet" (et pas "p" ou autre)
-        notification.setContributeur(c); // ✅ "contributeur" et pas "c"
-        notification.setDescription("Nouvelle demande de participation pour le projet : " + p.getTitre());
+        notification.setProjet(projet); // ✅ tu dois utiliser "projet" (et pas "p" ou autre)
+        notification.setContributeur(contributeur); // ✅ "contributeur" et pas "c"
+        notification.setDescription("Nouvelle demande de participation pour le projet : " + projet.getTitre());
         notification.setDateNotification(LocalDateTime.now());
         notification.setStatutDemande(StatutDemande.EN_ATTENTE);
         notification.setEnumType(TypeNotification.DEMANDE);
         notification.setEtat(false);
         notificationRepository.save(notification);
+
+
         return demande;
     }
 
