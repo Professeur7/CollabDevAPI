@@ -61,6 +61,9 @@ public class Projet {
     @JoinColumn(name = "id_gestionnaire", referencedColumnName = "id_utilisateur")
     private Gestionnaire gestionnaire;
 
+    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> notification;
+
     public Long getIdProjet() {
         return idProjet;
     }

@@ -63,7 +63,7 @@ public class IdeeProjetServiceImpl implements IdeeProjetService {
                 // Requête native d'insertion dans la table GESTIONNAIRE
                 entityManager.createNativeQuery("""
                 INSERT INTO gestionnaire (id_gestionnaire, valider_commentaire, valider_contribution, valider_demande)
-                VALUES (:id, true, true, true)
+                VALUES (:id, false, false, false)
             """)
                         .setParameter("id", c.getId())
                         .executeUpdate();
