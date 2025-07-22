@@ -19,6 +19,7 @@ public class Contributeur extends Utilisateur{
     private String nom;
     private String prenom;
     private boolean Active;
+    private boolean leguer;
 
 
     @Enumerated(EnumType.STRING)

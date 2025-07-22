@@ -14,8 +14,11 @@ public class ContributeurDTO {
     private String password;
     private Profil profil;
     private Niveau niveau;
+    private boolean leguer = true;
     @Column(nullable = false)
     private boolean active = true;
+
+
 
     public String getNom() {
         return nom;
@@ -71,5 +74,13 @@ public class ContributeurDTO {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean isLeguer() {
+        return leguer;
+    }
+
+    public void setLeguer(boolean leguer) {
+        this.leguer = leguer;
     }
 }

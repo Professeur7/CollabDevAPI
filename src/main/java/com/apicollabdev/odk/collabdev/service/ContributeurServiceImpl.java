@@ -34,6 +34,7 @@ public  class ContributeurServiceImpl implements ContributeurService {
         contributeur.setNiveau(dto.getNiveau());
         contributeur.setProfil(dto.getProfil());
 
+
         return contributeurRepository.save(contributeur);
     }
 

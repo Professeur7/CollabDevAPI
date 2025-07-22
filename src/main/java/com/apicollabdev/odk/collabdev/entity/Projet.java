@@ -40,7 +40,7 @@ public class Projet {
     private List<Contribution> contributions;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_idee_projet")
+    @JoinColumn(name = "id_idee_projet", nullable = false)
     private IdeeProjet ideeProjet;
 
 

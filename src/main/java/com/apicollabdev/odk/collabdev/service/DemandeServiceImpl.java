@@ -41,7 +41,7 @@ public class DemandeServiceImpl implements DemandeService {
     public Demande createDemande(DemandeDTO demandeDTO, long idContributeur, long idProjet) {
          Contributeur contributeur = contributeurRepository.findById(idContributeur)
                  .orElseThrow(() -> new RuntimeException("Contributeur Introuvable"));
-            Projet projet = projetRepository.findById(idProjet)
+            Projet projet = projetRepository.findByIdProjet(idProjet)
                     .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
             Demande demande = new Demande();
             demande.setStatut(demandeDTO.getStatut());
@@ -52,8 +52,8 @@ public class DemandeServiceImpl implements DemandeService {
             demandeRepository.save(demande);
 
         Notification notification = new Notification();
-        notification.setProjet(projet); // ✅ tu dois utiliser "projet" (et pas "p" ou autre)
-        notification.setContributeur(contributeur); // ✅ "contributeur" et pas "c"
+        notification.setProjet(projet);
+        notification.setContributeur(contributeur);
         notification.setDescription("Nouvelle demande de participation pour le projet : " + projet.getTitre());
         notification.setDateNotification(LocalDateTime.now());
         notification.setStatutDemande(StatutDemande.EN_ATTENTE);
