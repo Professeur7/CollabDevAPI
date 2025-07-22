@@ -14,7 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@PrimaryKeyJoinColumn(name = "id_contributeur")
+@DiscriminatorValue("CONTRIBUTEUR")
+@PrimaryKeyJoinColumn(name = "id")
 public class Contributeur extends Utilisateur{
 
 

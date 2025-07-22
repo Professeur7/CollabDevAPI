@@ -23,7 +23,7 @@ public class DemandeController {
     private final DemandeService demandeService;
 
     @PostMapping("/{idcontributeur}/projets/{idprojet}")
-    public ResponseEntity<Demande> create(@RequestBody DemandeDTO demandeDTO, @PathVariable("idcontributeur") long idContributeur, @PathVariable("idprojet") long idProjet) {
+    public ResponseEntity<Demande> create(@RequestBody DemandeDTO demandeDTO, @PathVariable("idcontributeur") long idContributeur, @PathVariable("idprojet") int idProjet) {
         return ResponseEntity.ok(demandeService.createDemande(demandeDTO, idContributeur, idProjet));
     }
 

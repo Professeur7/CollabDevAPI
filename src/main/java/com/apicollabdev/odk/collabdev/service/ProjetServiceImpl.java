@@ -19,8 +19,8 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
-    public Projet getProjetById(Long id) {
-        return projetRepository.findById(id).orElse(null);
+    public Projet getProjetById(int idProjet) {
+        return projetRepository.findById(idProjet).orElse(null);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
-    public void deleteProjet(Long id) {
-        projetRepository.deleteById(id);
+    public void deleteProjet(int idProjet) {
+        projetRepository.deleteById(idProjet);
     }
 }

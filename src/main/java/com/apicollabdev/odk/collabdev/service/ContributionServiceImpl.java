@@ -29,7 +29,7 @@ public class ContributionServiceImpl implements ContributionService {
     }
 
     @Override
-    public Contribution createContribution(ContributionDTO contributionDTO, long idProjet, long idContributeur) {
+    public Contribution createContribution(ContributionDTO contributionDTO, int idProjet, long idContributeur) {
         // Recupere le projet et le contributeur depuis la base doonées
         Contributeur c = contributeurRepository.findById(idContributeur)
                 .orElseThrow(() -> new RuntimeException("Contributeur introuvable"));

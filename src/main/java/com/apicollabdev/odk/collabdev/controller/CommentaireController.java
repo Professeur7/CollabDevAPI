@@ -22,13 +22,13 @@ public class CommentaireController {
     private final ProjetRepository projetRepository;
 
     @PostMapping("/{idContributeur}")
-    public ResponseEntity<Commentaire> create(@RequestBody Commentaire commentaire,@PathVariable("idContributeur") long idContributeur, @RequestParam("idProjet") long idProjet ) {
+    public ResponseEntity<Commentaire> create(@RequestBody Commentaire commentaire,@PathVariable("idContributeur") long idContributeur, @RequestParam("idProjet") int idProjet ) {
         Contributeur c = contributeurRepository.findById(idContributeur).orElseThrow(()-> new RuntimeException("Contributeur non trouvé"));
-        Projet p = projetRepository.findById(idProjet).orElseThrow(()-> new RuntimeException("Projet non trouvé"));
+        Projet p = projetRepository.findById((int) idProjet).orElseThrow(()-> new RuntimeException("Projet non trouvé"));
         return ResponseEntity.ok(commentaireService.createCommentaire(commentaire, idContributeur, idProjet));
     }
 
-    @GetMapping("{idContributeur}")
+    @GetMapping("list/{idContributeur}")
     public List<Commentaire> getAll(@PathVariable("idContributeur") long idContributeur) {
         Contributeur contributeur = contributeurRepository.findById(idContributeur).
                 orElseThrow(()->new RuntimeException("Contributeur n'existe pas"));

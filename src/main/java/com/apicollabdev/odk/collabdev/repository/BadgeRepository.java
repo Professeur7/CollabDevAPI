@@ -12,8 +12,6 @@ import java.util.Optional;
 @Repository
 public interface BadgeRepository extends JpaRepository<Badge, Long> {
     List<Badge> findByContributeur(Contributeur contributeur);
-
-
     Optional<Badge> deleteBadgeByIdBadge(int idBadge);
 
 

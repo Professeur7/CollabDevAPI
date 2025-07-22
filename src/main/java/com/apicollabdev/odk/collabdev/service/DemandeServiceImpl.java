@@ -27,7 +27,7 @@ public class DemandeServiceImpl implements DemandeService {
     }
 
     @Override
-    public Demande createDemande(DemandeDTO demandeDTO, long idContributeur, long idProjet) {
+    public Demande createDemande(DemandeDTO demandeDTO, long idContributeur, int idProjet) {
          Contributeur c = contributeurRepository.findById(idContributeur)
                  .orElseThrow(() -> new RuntimeException("Contributeur Introuvable"));
             Projet p = projetRepository.findById(idProjet)

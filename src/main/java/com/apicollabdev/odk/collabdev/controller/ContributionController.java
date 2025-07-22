@@ -17,7 +17,7 @@ public class ContributionController {
     private final ContributionService contributionService;
 
     @PostMapping("/projet/{idprojet}/contributeur/{idcontributeur}")
-    public ResponseEntity<Contribution> create(@RequestBody ContributionDTO contributionDTO, @PathVariable("idprojet") long idProjet, @PathVariable("idcontributeur") long idContributeur) {
+    public ResponseEntity<Contribution> create(@RequestBody ContributionDTO contributionDTO, @RequestParam("idprojet") int idProjet, @PathVariable("idcontributeur") long idContributeur) {
         return ResponseEntity.ok(contributionService.createContribution(contributionDTO, idProjet, idContributeur));
     }
 

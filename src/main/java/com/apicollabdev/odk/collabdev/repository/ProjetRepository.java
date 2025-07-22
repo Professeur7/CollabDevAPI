@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ProjetRepository extends JpaRepository<Projet, Long> {
-    Optional<Projet> findById(int id);
+public interface ProjetRepository extends JpaRepository<Projet, Integer> {
+    Optional<Projet> findById(int idProjet);
 
     List<Projet> findByStatut(StatutProjet statut);
 }

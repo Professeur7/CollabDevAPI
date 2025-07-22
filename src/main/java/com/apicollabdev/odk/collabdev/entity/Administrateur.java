@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@PrimaryKeyJoinColumn(name = "id_administrateur")
+@DiscriminatorValue("ADMINISTRATEUR")
 public class Administrateur extends Utilisateur{
 
     private String nom;
@@ -33,9 +33,6 @@ public class Administrateur extends Utilisateur{
     private List<Badge> badge;
 
     @OneToMany(mappedBy = "administrateur")
-    private List<Administrateur> administrateurs;
-
-    @OneToMany(mappedBy = "domaine")
     private List<Domaine> domaine;
 
 }

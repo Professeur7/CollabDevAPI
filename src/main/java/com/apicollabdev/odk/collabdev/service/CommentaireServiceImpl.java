@@ -21,11 +21,12 @@ public class CommentaireServiceImpl implements CommentaireService {
     private final ContributeurRepository contributeurRepository;
 
     @Override
-    public Commentaire createCommentaire(Commentaire commentaire, long contributeur, long projet) {
+    public Commentaire createCommentaire(Commentaire commentaire, long contributeur, int projet) {
         Contributeur c = contributeurRepository.findById(contributeur)
                 .orElseThrow(() -> new RuntimeException("Contributeur non trouvé"));
         Projet p = projetRepository.findById(projet)
-                .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
+                        .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
+
 
         commentaire.setAuteur(commentaire.getAuteur());
         commentaire.setContenu(commentaire.getContenu());

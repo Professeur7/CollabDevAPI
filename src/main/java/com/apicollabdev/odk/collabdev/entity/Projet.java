@@ -13,7 +13,7 @@ public class Projet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_projet")
-    private Long idProjet;
+    private int idProjet;
 
     private String titre;
     private String description;
@@ -62,7 +62,7 @@ public class Projet {
     }
 
     public void setIdProjet(Long idProjet) {
-        this.idProjet = idProjet;
+        this.idProjet = Math.toIntExact(idProjet);
     }
 
     public String getTitre() {
